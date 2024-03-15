@@ -36,8 +36,35 @@ app.get('/employees', function(req, res)
         db.pool.query(query1, function(error, rows, fields){        // Execute the query
 
         	res.render('employees', {data: rows});                      // Note the call to render() and not send(). Using render() ensures the templating engine
-	})
+	    })
     })
+app.post('/add-employee-form', function(req, res){
+
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+    
+    // Create the query and run it on the database
+    
+    query1 = `INSERT INTO Employees(employee_ID, employee_FirstName, employee_LastName, employee_Address, employee_PhoneNumber, employee_EmailAddress)
+    VALUES('${data['input-id']}', '${data['input-fname']}' , '${data['input-lname']}', '${data['input-address']}', '${data['input-phone']}', '${data['input-email']}')`;
+    db.pool.query(query1, function(error, rows, fields){
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/employees');
+        }
+    })
+})
     app.get('/inventory', function(req, res)
     {
         res.render('inventory');
@@ -51,7 +78,34 @@ app.get('/invoices', function(req, res)
 
         	res.render('invoices', {data: rows});                      // Note the call to render() and not send(). Using render() ensures the templating engine
 	})
+})
+app.post('/add-invoice-form', function(req, res){
+
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+    
+    // Create the query and run it on the database
+    
+    query1 = `INSERT INTO Invoices(invoice_ID, customer_ID, employee_ID, quantity, model_ID, trim_ID, total_Price)
+    VALUES('${data['input-iid']}', '${data['input-cid']}' , '${data['input-eid']}', '${data['input-quanity']}', '${data['input-mid']}', '${data['input-tid']}', '${data['input-price']}')`;
+    db.pool.query(query1, function(error, rows, fields){
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/invoices');
+        }
     })
+})
     app.get('/models', function(req, res)
     {
         let query1 = "SELECT * FROM Models;";                        // Define our query
