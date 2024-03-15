@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Invoices</h1>
+<div id="Invoices">
+    
+    <button class="button newInvoice" onclick="NewInvoiceForm()">New Invoice</button>
+        <button class="button FindInvoice" onclick="NewFindInvoiceForm()">Find Invoice</button>
+        <!-- <div class="form-popup" id="NewCustomerForm"> -->
+            <form id="NewInvoiceForm" class="form-container" style="display: none;">
+              <h1>New Invoice</h1>
+          
+              <label for="customer_ID"><b>Customer ID</b></label>
+              <input type="text" placeholder="Enter customer ID" name="customer_ID" required>
+          
+              <label for="employee_ID"><b>Employee ID</b></label>
+              <input type="text" placeholder="Enter employee ID" name="employee_ID" required>
+
+              <label for="quantity"><b>Quantity</b></label>
+              <input type="text" placeholder="Enter quantity" name="quantity" required>
+          
+              <label for="model_ID"><b>Model ID</b></label>
+              <input type="text" placeholder="Enter model ID" name="model_ID" required>
+
+              <label for="trim_ID"><b>trim ID</b></label>
+              <input type="text" placeholder="Enter trim ID" name="trim_ID" required>
+
+              <label for="total_Price"><b>total Price</b></label>
+              <input type="text" placeholder="Enter total Price" name="total_Price" required>
+          
+              <button type="submit" class="btn">Enter New Invoice</button>
+              <button type="button" class="btn cancel" onclick="CloseNewInvoiceForm()">Cancel</button>
+            </form>
+          <!-- </div> -->
+        <script>
+            function NewInvoiceForm() {
+              document.getElementById("NewInvoiceForm").style.display = "block";
+            }
+            
+            function CloseNewInvoiceForm() {
+              document.getElementById("NewInvoiceForm").style.display = "none";
+            }
+            
+            // function NewFindCustomerForm() {
+            //   document.getElementById("NewFindCustomerForm").style.display = "block";
+            // }
+            
+            // function CloseNewFindCustomerForm() {
+            //   document.getElementById("NewFindCustomerForm").style.display = "none";
+            // }
+
+        </script>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th><a href="#" onClick="newInvoice()">New Invoice</a></th>
+            <th></th>
+            <th>invoice_ID</th>
+            <th>customer_ID</th>
+            <th>employee_ID: </th>
+            <th>quantity</th>
+            <th>model_ID</th>
+            <th>trim_ID</th>
+            <th>total_Price</th>
+          </tr>
+        <tr>
+          <td><a href="#" onClick="updateInvoice('this.invoice_ID')">Edit</a></td>
+          <td><a href="#" onclick="deleteInvoice('this.invoice_ID')">Delete</a></td>
+          <td align="right" >1</td>
+          <td  align="right" >100</td>
+          <td align="right" >207</td>
+          <td align="right" >1</td>
+          <td align="right" >5002</td>
+          <td align="right" >2004</td>
+          <td align="right" >64000</td>
+        </tr>
+        <tr>
+          <td><a href="#" onClick="updateInvoice('this.invoice_ID')">Edit</a></td>
+          <td><a href="#" onclick="deleteInvoice('this.invoice_ID')">Delete</a></td>
+          <td align="right" >2</td>
+          <td align="right" >101</td>
+          <td align="right" >206</td>
+          <td  align="right" >1</td>
+          <td align="right" >5001</td>
+          <td align="right" >1004</td>
+          <td align="right" >65000</td>
+        </tr>
+        <tr>
+          <td><a href="#" onClick="updateInvoice('this.invoice_ID')">Edit</a></td>
+          <td><a href="#" onclick="deleteInvoice('this.invoice_ID')">Delete</a></td>
+          <td align="right" >3</td>
+          <td align="right" >100</td>
+          <td align="right" >205</td>
+          <td align="right" >1</td>
+          <td align="right" >5003</td>
+          <td align="right" >3002</td>
+          <td align="right" >52000</td>
+        </tr>
+      </table>
+    </div>
+
+    <p><a href="index.html" onClick="Main()">HomePage</a> </p>
+
+<p>My first paragraph.</p>
+
+</body>
+</html>

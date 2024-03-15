@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Trims</h1>
+<div id="Trims">
+  
+    <button class="button newTrim" onclick="NewTrimForm()">New Trim</button>
+        <button class="button FindTrim" onclick="NewFindTrimForm()">Find Trim</button>
+        <!-- <div class="form-popup" id="NewCustomerForm"> -->
+            <form id="NewTrimForm" class="form-container" style="display: none;">
+              <h1>New Trim</h1>
+          
+              <label for="trim_ID"><b>Trim ID</b></label>
+              <input type="text" placeholder="Enter Trim ID" name="trim_ID" required>
+          
+              <label for="trim_Name"><b>Trim Name</b></label>
+              <input type="text" placeholder="Enter Trim Name" name="trim_Name" required>
+
+              <label for="trim_Units"><b>Trim Units</b></label>
+              <input type="text" placeholder="Enter Trim Units" name="trim_Units" required>
+
+              <label for="trim_MSRP"><b>Trim MSRP</b></label>
+              <input type="text" placeholder="Enter Trim MSRP" name="trim_MSRP" required>
+          
+              <button type="submit" class="btn">Enter New Trim</button>
+              <button type="button" class="btn cancel" onclick="CloseupdateTrimForm()">Cancel</button>
+            </form>
+
+            <form id="EditTrimForm" class="form-container" style="display: none;">
+                <h1>New Trim</h1>
+            
+                <label for="trim_ID"><b>Trim ID</b></label>
+                <input type="text" placeholder="Enter Trim ID" name="trim_ID" required>
+            
+                <label for="trim_Name"><b>Trim Name</b></label>
+                <input type="text" placeholder="Enter Trim Name" name="trim_Name" required>
+  
+                <label for="trim_Units"><b>Trim Units</b></label>
+                <input type="text" placeholder="Enter Trim Units" name="trim_Units" required>
+  
+                <label for="trim_MSRP"><b>Trim MSRP</b></label>
+                <input type="text" placeholder="Enter Trim MSRP" name="trim_MSRP" required>
+            
+                <button type="submit" class="btn">Enter New Trim</button>
+                <button type="button" class="btn cancel" onclick="CloseupdateTrimForm()">Cancel</button>
+              </form>
+          <!-- </div> -->
+        <script>
+            function NewTrimForm() {
+              document.getElementById("NewTrimForm").style.display = "block";
+            }
+            
+            function CloseNewTrimForm() {
+              document.getElementById("NewTrimForm").style.display = "none";
+            }
+
+            function updateTrim() {
+              document.getElementById("EditTrimForm").style.display = "block";
+            }
+            
+            function CloseupdateTrimForm() {
+              document.getElementById("EditTrimForm").style.display = "none";
+            }
+            
+            // function NewFindCustomerForm() {
+            //   document.getElementById("NewFindCustomerForm").style.display = "block";
+            // }
+            
+            // function CloseNewFindCustomerForm() {
+            //   document.getElementById("NewFindCustomerForm").style.display = "none";
+            // }
+
+        </script>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th><a href="#" onClick="newTrim()">New Trim</a></th>
+            <th>trim_ID</th>
+            <th>trim_Name</th>
+            <th>trim_Units</th>
+            <th>trim_MSRP</th>
+          </tr>
+        <tr>
+          <td><a href="#" onClick="updateTrim('this.trim_ID')">Edit</a></td>
+          <td align="right" >70</td>
+          <td align="right">Sprint</td>
+          <td align="right">22</td>
+          <td align="right">43845</td>
+        </tr>
+        <tr>
+          <td><a href="#" onClick="updateTrim('this.trim_ID')">Edit</a></td>
+          <td align="right" >69</td>
+          <td align="right">Ti</td>
+          <td align="right">20</td>
+          <td align="right">46500</td>
+        </tr>
+        <tr>
+          <td><a href="#" onClick="updateTrim('this.trim_ID')">Edit</a></td>
+          <td align="right" >68</td>
+          <td align="right">Veloce</td>
+          <td align="right">20</td>
+          <td align="right">51040</td>
+        </tr>
+      </table>
+    </div>
+
+    <p><a href="index.html" onClick="Main()">HomePage</a> </p>
+
+<p>My first paragraph.</p>
+
+</body>
+</html>

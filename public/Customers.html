@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Customers</h1>
+    <div id="Customers">
+        <button class="button newCustomer" onclick="NewCustomerForm()">New Customer</button>
+        <button class="button FindCustomer" onclick="NewFindCustomerForm()">Find Customer</button>
+        <!-- <div class="form-popup" id="NewCustomerForm"> -->
+            <form id="NewCustomerForm" class="form-container" style="display: none;">
+              <h1>New Customer</h1>
+          
+              <label for="customer_FirstName"><b>First Name</b></label>
+              <input type="text" placeholder="Enter First Name" name="customer_FirstName" required>
+          
+              <label for="customer_LastName"><b>Last Name</b></label>
+              <input type="text" placeholder="Enter Last Name" name="customer_LastName" required>
+
+              <label for="customer_Address"><b>Address</b></label>
+              <input type="text" placeholder="Enter Address" name="customer_Address" required>
+          
+              <label for="customer_PhoneNumber"><b>Phone Number</b></label>
+              <input type="text" placeholder="Enter Phone Number" name="customer_PhoneNumber" required>
+
+              <label for="customer_EmailAddress"><b>Email</b></label>
+              <input type="text" placeholder="Enter Email" name="customer_EmailAddress" required>
+          
+              <button type="submit" class="btn">Enter New Customer</button>
+              <button type="button" class="btn cancel" onclick="CloseNewCustomerForm()">Cancel</button>
+            </form>
+            
+            <form id="EditCustomer" style="display: none;">
+            <h3>Edit Customer</h3>
+                <label for="customer_FirstName"><b>First Name</b></label>
+                <input type="text" placeholder="Enter First Name" name="customer_FirstName" required>
+            
+                <label for="customer_LastName"><b>Last Name</b></label>
+                <input type="text" placeholder="Enter Last Name" name="customer_LastName" required>
+
+                <label for="customer_Address"><b>Address</b></label>
+                <input type="text" placeholder="Enter Address" name="customer_Address" required>
+            
+                <label for="customer_PhoneNumber"><b>Phone Number</b></label>
+                <input type="text" placeholder="Enter Phone Number" name="customer_PhoneNumber" required>
+
+                <label for="customer_EmailAddress"><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" name="customer_EmailAddress" required>
+            
+                <button type="submit" class="btn">Update Customer</button>
+                <button type="button" class="btn cancel" onclick="CloseupdateCustomer()">Cancel</button>
+            </form>
+          <!-- </div> -->
+        <script>
+            function NewCustomerForm() {
+              document.getElementById("NewCustomerForm").style.display = "block";
+            }
+            
+            function CloseNewCustomerForm() {
+              document.getElementById("NewCustomerForm").style.display = "none";
+            }
+
+            function updateCustomer() {
+                document.getElementById("EditCustomer").style.display = "block";
+            }
+            
+            function CloseupdateCustomer() {
+                document.getElementById("EditCustomer").style.display = "none";
+            }
+            // function NewFindCustomerForm() {
+            //   document.getElementById("NewFindCustomerForm").style.display = "block";
+            // }
+            
+            // function CloseNewFindCustomerForm() {
+            //   document.getElementById("NewFindCustomerForm").style.display = "none";
+            // }
+
+        </script>
+
+        <table border="1" cellpadding="5">
+            <tr>
+                <!-- <th><a href="#" onClick="newCustomer()">New Customer</a></th> -->
+                <th></th>
+                <th></th>
+                <th>customer_ID</th>
+                <th>customer_FirstName</th>
+                <th>customer_LastName: </th>
+                <th>customer_Address</th>
+                <th>customer_PhoneNumber</th>
+                <th>customer_EmailAddress</th>
+            </tr>
+            <tr>
+            <td><a href="#" onClick="updateCustomer('this.customer_ID')">Edit</a></td>
+            <td><a href="#" onclick="deleteCustomer('this.customer_ID')">Delete</a></td>
+            <td align="left" >520</td>
+            <td align="right">Jennifer</td>
+            <td align="right">Microsoft</td>
+            <td align="right">2740 Kelley Road</td>
+            <td align="right">318-265-0275</td>
+            <td align="right">JenniferMicrosoft@email.com</td>
+            </tr>
+            <tr>
+            <td><a href="#" onClick="updateCustomer('this.customer_ID')">Edit</a></td>
+            <td><a href="#" onclick="deleteCustomer('this.customer_ID')">Delete</a></td>
+            <td align="left" >103</td>
+            <td align="right">Juan</td>
+            <td align="right">Netflix</td>
+            <td align="right">4964 Carter Street</td>
+            <td align="right">405-622-5875</td>
+            <td align="right">JuanNetflix@email.com</td>
+            </tr>
+            <tr>
+            <td><a href="#" onClick="updateCustomer('this.customer_ID')">Edit</a></td>
+            <td><a href="#" onclick="deleteCustomer('this.customer_ID')">Delete</a></td>
+            <td align="left" >777</td>
+            <td align="right">Q</td>
+            <td align="right">Gnome</td>
+            <td align="right">1939 Ritter Avenue</td>
+            <td align="right">318-265-0278</td>
+            <td align="right">QGnome@email.com</td>
+            </tr>
+        </table>
+    </div>
+
+<p><a href="index.html" onClick="Main()">HomePage</a> </p>
+
+
+
+</body>
+</html>

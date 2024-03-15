@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Models</h1>
+<div id="Models">
+    <button class="button newModel" onclick="NewModelForm()">New Model</button>
+        <button class="button FindModel" onclick="NewFindModelForm()">Find Model</button>
+        <!-- <div class="form-popup" id="NewCustomerForm"> -->
+            <form id="NewModelForm" class="form-container" style="display: none;">
+              <h1>New Model</h1>
+          
+              <label for="model_ID"><b>Model ID</b></label>
+              <input type="text" placeholder="Enter Model ID" name="model_ID" required>
+          
+              <label for="model_Name"><b>Model Name</b></label>
+              <input type="text" placeholder="Enter Model Name" name="model_Name" required>
+
+              <label for="model_Year"><b>Model Year</b></label>
+              <input type="text" placeholder="Enter Model Year" name="model_Year" required>
+          
+              <button type="submit" class="btn">Enter New Model</button>
+              <button type="button" class="btn cancel" onclick="CloseNewModelForm()">Cancel</button>
+            </form>
+
+            <form id="EditModelForm" class="form-container" style="display: none;">
+                <h1>Edit Model</h1>
+            
+                <label for="model_ID"><b>Model ID</b></label>
+                <input type="text" placeholder="Enter Model ID" name="model_ID" required>
+            
+                <label for="model_Name"><b>Model Name</b></label>
+                <input type="text" placeholder="Enter Model Name" name="model_Name" required>
+  
+                <label for="model_Year"><b>Model Year</b></label>
+                <input type="text" placeholder="Enter Model Year" name="model_Year" required>
+            
+                <button type="submit" class="btn">Update Model</button>
+                <button type="button" class="btn cancel" onclick="CloseupdateModelForm()">Cancel</button>
+              </form>
+          <!-- </div> -->
+        <script>
+            function NewModelForm() {
+              document.getElementById("NewModelForm").style.display = "block";
+            }
+            
+            function CloseNewModelForm() {
+              document.getElementById("NewModelForm").style.display = "none";
+            }
+
+            function updateModel() {
+              document.getElementById("EditModelForm").style.display = "block";
+            }
+            
+            function CloseupdateModelForm() {
+              document.getElementById("EditModelForm").style.display = "none";
+            }
+            
+            // function NewFindCustomerForm() {
+            //   document.getElementById("NewFindCustomerForm").style.display = "block";
+            // }
+            
+            // function CloseNewFindCustomerForm() {
+            //   document.getElementById("NewFindCustomerForm").style.display = "none";
+            // }
+
+        </script>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th><a href="#" onClick="newModel()">New Model</a></th>
+            <!-- <th></th> -->
+            <th>model_ID</th>
+            <th>model_Name</th>
+            <th>model_Year: </th>
+          </tr>
+        <tr>
+          <td><a href="#" onClick="updateModel('this.model_ID')">Edit</a></td>
+          <!-- <td><a href="#" onclick="deletePerson('this.personID')">Delete</a></td> -->
+          <td align="right" >1007003</td>
+          <td  align="right" >Giulia</td>
+          <td align="right" >2024</td>
+        </tr>
+        <tr>
+          <td><a href="#" onClick="updateModel('this.model_ID')">Edit</a></td>
+          <!-- <td><a href="#" onclick="deletePerson('this.personID')">Delete</a></td> -->
+          <td align="right" >1007002</td>
+          <td align="right" >Stelvio</td>
+          <td align="right" >2024</td>
+        </tr>
+        <tr>
+          <td><a href="#" onClick="updateModel('this.model_ID')">Edit</a></td>
+          <!-- <td><a href="#" onclick="deletePerson('this.personID')">Delete</a></td> -->
+          <td align="right" >1007001</td>
+          <td align="right" >Tonale</td>
+          <td align="right" >2024</td>
+        </tr>
+      </table>
+    </div>
+
+    <p><a href="index.html" onClick="Main()">HomePage</a> </p>
+
+<p>My first paragraph.</p>
+
+</body>
+</html>

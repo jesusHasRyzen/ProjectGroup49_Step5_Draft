@@ -1,0 +1,111 @@
+<h1>Invoices</h1>
+<div id="Invoices">
+   <table id="Invoices-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+	    <th>delete</th>
+        <th>edit</th>
+        </tr>
+    </thead>
+     {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr data-value={{this.invoice_ID}}>
+            <td>{{this.invoice_ID}}</td>
+            <td>{{this.customer_ID}}</td>
+            <td>{{this.employee_ID}}</td>
+            <td>{{this.quantity}}</td>
+            <td>{{this.model_ID}}</td>
+	          <td>{{this.trim_ID}}</td>
+            <td>{{this.total_Price}}</td>
+	    <td><button onclick="deleteCustomer({{this.customer_ID}})">Delete</button></td>
+        <td><button onclick="OpenupdateCustomer({{this.customer_ID}})">Edit</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<h2>Adding Data using an HTML form</h2>
+<p>To add a new person, please enter their information below nad click `Submit`!</p>
+<form id="add-invoice-form" method="POST" action="/add-invoice-form">
+    
+    <label for="input-iid">Invoice ID: </label>
+    <input type="number" name="input-iid" id="input-iid">
+
+    <label for="input-cid">Customer ID: </label>
+    <input type="text" name="input-cid" id="input-cid">
+    
+    <label for="input-eid">Employee ID: </label>
+    <input type="text" name="input-eid" id="input-eid">
+
+    <label for="input-quantity">Quantity: </label>
+    <input type="text" name="input-quantity" id="input-quantity">
+
+    <label for="input-mid">Model ID: </label>
+    <input type="number" name="input-mid" id="input-mid">
+
+    <label for="input-tid">Trim ID: </label>
+    <input type="text" name="input-tid" id="input-tid">
+
+    <label for="input-price">Total Price: </label>
+    <input type="text" name="input-price" id="input-price">
+
+    <input type="submit">
+</form>
+    <button class="button newInvoice" onclick="NewInvoiceForm()">New Invoice</button>
+        <button class="button FindInvoice" onclick="NewFindInvoiceForm()">Find Invoice</button>
+        <!-- <div class="form-popup" id="NewCustomerForm"> -->
+            <form id="NewInvoiceForm" class="form-container" style="display: none;">
+              <h1>New Invoice</h1>
+          
+              <label for="customer_ID"><b>Customer ID</b></label>
+              <input type="text" placeholder="Enter customer ID" name="customer_ID" required>
+          
+              <label for="employee_ID"><b>Employee ID</b></label>
+              <input type="text" placeholder="Enter employee ID" name="employee_ID" required>
+
+              <label for="quantity"><b>Quantity</b></label>
+              <input type="text" placeholder="Enter quantity" name="quantity" required>
+          
+              <label for="model_ID"><b>Model ID</b></label>
+              <input type="text" placeholder="Enter model ID" name="model_ID" required>
+
+              <label for="trim_ID"><b>trim ID</b></label>
+              <input type="text" placeholder="Enter trim ID" name="trim_ID" required>
+
+              <label for="total_Price"><b>total Price</b></label>
+              <input type="text" placeholder="Enter total Price" name="total_Price" required>
+          
+              <button type="submit" class="btn">Enter New Invoice</button>
+              <button type="button" class="btn cancel" onclick="CloseNewInvoiceForm()">Cancel</button>
+            </form>
+          <!-- </div> -->
+        <script>
+            function NewInvoiceForm() {
+              document.getElementById("NewInvoiceForm").style.display = "block";
+            }
+            
+            function CloseNewInvoiceForm() {
+              document.getElementById("NewInvoiceForm").style.display = "none";
+            }
+            
+            // function NewFindCustomerForm() {
+            //   document.getElementById("NewFindCustomerForm").style.display = "block";
+            // }
+            
+            // function CloseNewFindCustomerForm() {
+            //   document.getElementById("NewFindCustomerForm").style.display = "none";
+            // }
+
+        </script>

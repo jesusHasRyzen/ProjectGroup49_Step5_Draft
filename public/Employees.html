@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Employees</h1>
+<div id="Employees">
+    <button class="button newEmployee" onclick="NewEmployeeForm()">New Employee</button>
+        <button class="button FindEmployee" onclick="NewFindEmployeeForm()">Find Employee</button>
+        <!-- <div class="form-popup" id="NewCustomerForm"> -->
+            <form id="NewEmployeeForm" class="form-container" style="display: none;">
+              <h1>New Employee</h1>
+          
+              <label for="employee_FirstName"><b>First Name</b></label>
+              <input type="text" placeholder="Enter First Name" name="employee_FirstName" required>
+          
+              <label for="employee_LastName"><b>Last Name</b></label>
+              <input type="text" placeholder="Enter Last Name" name="employee_LastName" required>
+
+              <label for="employee_Address"><b>Address</b></label>
+              <input type="text" placeholder="Enter Address" name="employee_Address" required>
+          
+              <label for="employee_PhoneNumber"><b>Phone Number</b></label>
+              <input type="text" placeholder="Enter Phone Number" name="employee_PhoneNumber" required>
+
+              <label for="employee_EmailAddress"><b>Email</b></label>
+              <input type="text" placeholder="Enter Email" name="employee_EmailAddress" required>
+          
+              <button type="submit" class="btn">Enter New employee</button>
+              <button type="button" class="btn cancel" onclick="CloseNewEmployeeForm()">Cancel</button>
+            </form>
+           
+            <form id="EditEmployeeForm" class="form-container" style="display: none;">
+                <h1>New Employee</h1>
+            
+                <label for="employee_FirstName"><b>First Name</b></label>
+                <input type="text" placeholder="Enter First Name" name="employee_FirstName" required>
+            
+                <label for="employee_LastName"><b>Last Name</b></label>
+                <input type="text" placeholder="Enter Last Name" name="employee_LastName" required>
+  
+                <label for="employee_Address"><b>Address</b></label>
+                <input type="text" placeholder="Enter Address" name="employee_Address" required>
+            
+                <label for="employee_PhoneNumber"><b>Phone Number</b></label>
+                <input type="text" placeholder="Enter Phone Number" name="employee_PhoneNumber" required>
+  
+                <label for="employee_EmailAddress"><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" name="employee_EmailAddress" required>
+            
+                <button type="submit" class="btn">Update employee</button>
+                <button type="button" class="btn cancel" onclick="CloseupdateEmployee()">Cancel</button>
+              </form>
+          <!-- </div> -->
+        <script>
+            function NewEmployeeForm() {
+              document.getElementById("NewEmployeeForm").style.display = "block";
+            }
+            
+            function CloseNewEmployeeForm() {
+              document.getElementById("NewEmployeeForm").style.display = "none";
+            }
+
+            function updateEmployee() {
+                document.getElementById("EditEmployeeForm").style.display = "block";
+            }
+            
+            function CloseupdateEmployee() {
+                document.getElementById("EditEmployeeForm").style.display = "none";
+            }
+            
+            // function NewFindCustomerForm() {
+            //   document.getElementById("NewFindCustomerForm").style.display = "block";
+            // }
+            
+            // function CloseNewFindCustomerForm() {
+            //   document.getElementById("NewFindCustomerForm").style.display = "none";
+            // }
+
+        </script>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th><a href="#" onClick="newEmployee()">New Employee</a></th>
+            <th></th>
+            <th>employee_ID</th>
+            <th>employee_FirstName</th>
+            <th>employee_LastName: </th>
+            <th>employee_Address</th>
+            <th>employee_PhoneNumber</th>
+            <th>employee_EmailAddress</th>
+          </tr>
+        <tr>
+          <td><a href="#" onClick="updateEmployee('this.employee_ID')">Edit</a></td>
+          <td><a href="#" onclick="deleteEmployee('this.employee_ID')">Delete</a></td>
+          <td align="left" >103</td>
+          <td align="right">Juan</td>
+          <td align="right">Netflix</td>
+          <td align="right">2740 Kelley Road</td>
+          <td align="right">405-622-5872</td>
+          <td align="right">JuanNetflix@email.com</td>
+        </tr>
+        <tr>
+          <td><a href="#" onClick="updateEmployee('this.employee_ID')">Edit</a></td>
+          <td><a href="#" onclick="deleteEmployee('this.employee_ID')">Delete</a></td>
+          <td align="left" >105</td>
+          <td align="right">Jose</td>
+          <td align="right">Hulu</td>
+          <td align="right">4964 Carter Street</td>
+          <td align="right">318-265-0275</td>
+          <td align="right">JoseHulu@email.com</td>
+        </tr>
+        <tr>
+          <td><a href="#" onClick="updateEmployee('this.employee_ID')">Edit</a></td>
+          <td><a href="#" onclick="deleteEmployee('this.employee_ID')">Delete</a></td>
+          <td align="left" >107</td>
+          <td align="right">James</td>
+          <td align="right">Prime</td>
+          <td align="right">1939 Ritter Avenue</td>
+          <td align="right">405-622-5873</td>
+          <td align="right">JamesPrime@email.com</td>
+        </tr>
+      </table>
+    </div>
+
+    <p><a href="index.html" onClick="Main()">HomePage</a> </p>
+
+<p>My first paragraph.</p>
+
+</body>
+</html>

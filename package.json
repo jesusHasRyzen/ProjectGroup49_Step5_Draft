@@ -1,0 +1,17 @@
+{
+  "name": "database_html_version_1.0",
+  "version": "1.0.0",
+  "description": "html page for asssignment 3",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jesus Ponce",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.2",
+    "forever": "^4.0.3",
+    "mysql": "^2.18.1"
+  }
+}

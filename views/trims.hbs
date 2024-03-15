@@ -1,0 +1,103 @@
+<h1>Trims</h1>
+<div id="Trims">
+    <table id="Trims-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+	    <th>delete</th>
+        <th>edit</th>
+        </tr>
+    </thead>
+     {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr data-value={{this.trim_ID}}>
+            <td>{{this.trim_ID}}</td>
+            <td>{{this.trim_Name}}</td>
+            <td>{{this.trim_Units}}</td>
+            <td>{{this.trim_MSRP}}</td>
+
+	    <td><button onclick="deleteCustomer({{this.customer_ID}})">Delete</button></td>
+        <td><button onclick="OpenupdateCustomer({{this.customer_ID}})">Edit</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+    <button class="button newTrim" onclick="NewTrimForm()">New Trim</button>
+        <button class="button FindTrim" onclick="NewFindTrimForm()">Find Trim</button>
+        <!-- <div class="form-popup" id="NewCustomerForm"> -->
+            <form id="NewTrimForm" class="form-container" style="display: none;">
+              <h1>New Trim</h1>
+          
+              <label for="trim_ID"><b>Trim ID</b></label>
+              <input type="text" placeholder="Enter Trim ID" name="trim_ID" required>
+          
+              <label for="trim_Name"><b>Trim Name</b></label>
+              <input type="text" placeholder="Enter Trim Name" name="trim_Name" required>
+
+              <label for="trim_Units"><b>Trim Units</b></label>
+              <input type="text" placeholder="Enter Trim Units" name="trim_Units" required>
+
+              <label for="trim_MSRP"><b>Trim MSRP</b></label>
+              <input type="text" placeholder="Enter Trim MSRP" name="trim_MSRP" required>
+          
+              <button type="submit" class="btn">Enter New Trim</button>
+              <button type="button" class="btn cancel" onclick="CloseupdateTrimForm()">Cancel</button>
+            </form>
+
+            <form id="EditTrimForm" class="form-container" style="display: none;">
+                <h1>New Trim</h1>
+            
+                <label for="trim_ID"><b>Trim ID</b></label>
+                <input type="text" placeholder="Enter Trim ID" name="trim_ID" required>
+            
+                <label for="trim_Name"><b>Trim Name</b></label>
+                <input type="text" placeholder="Enter Trim Name" name="trim_Name" required>
+  
+                <label for="trim_Units"><b>Trim Units</b></label>
+                <input type="text" placeholder="Enter Trim Units" name="trim_Units" required>
+  
+                <label for="trim_MSRP"><b>Trim MSRP</b></label>
+                <input type="text" placeholder="Enter Trim MSRP" name="trim_MSRP" required>
+            
+                <button type="submit" class="btn">Enter New Trim</button>
+                <button type="button" class="btn cancel" onclick="CloseupdateTrimForm()">Cancel</button>
+              </form>
+          <!-- </div> -->
+        <script>
+            function NewTrimForm() {
+              document.getElementById("NewTrimForm").style.display = "block";
+            }
+            
+            function CloseNewTrimForm() {
+              document.getElementById("NewTrimForm").style.display = "none";
+            }
+
+            function updateTrim() {
+              document.getElementById("EditTrimForm").style.display = "block";
+            }
+            
+            function CloseupdateTrimForm() {
+              document.getElementById("EditTrimForm").style.display = "none";
+            }
+            
+            // function NewFindCustomerForm() {
+            //   document.getElementById("NewFindCustomerForm").style.display = "block";
+            // }
+            
+            // function CloseNewFindCustomerForm() {
+            //   document.getElementById("NewFindCustomerForm").style.display = "none";
+            // }
+
+        </script>

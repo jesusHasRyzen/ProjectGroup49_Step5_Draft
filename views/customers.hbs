@@ -1,0 +1,74 @@
+
+<h1>Customers</h1>
+    <div id="Customers">
+        <button class="button newCustomer" onclick="NewCustomerForm()">New Customer</button>
+        <button class="button FindCustomer" onclick="NewFindCustomerForm()">Find Customer</button>
+        <!-- <div class="form-popup" id="NewCustomerForm"> -->
+            <form id="NewCustomerForm" class="form-container" style="display: none;">
+              <h1>New Customer</h1>
+          
+              <label for="customer_FirstName"><b>First Name</b></label>
+              <input type="text" placeholder="Enter First Name" name="customer_FirstName" required>
+          
+              <label for="customer_LastName"><b>Last Name</b></label>
+              <input type="text" placeholder="Enter Last Name" name="customer_LastName" required>
+
+              <label for="customer_Address"><b>Address</b></label>
+              <input type="text" placeholder="Enter Address" name="customer_Address" required>
+          
+              <label for="customer_PhoneNumber"><b>Phone Number</b></label>
+              <input type="text" placeholder="Enter Phone Number" name="customer_PhoneNumber" required>
+
+              <label for="customer_EmailAddress"><b>Email</b></label>
+              <input type="text" placeholder="Enter Email" name="customer_EmailAddress" required>
+          
+              <button type="submit" class="btn">Enter New Customer</button>
+              <button type="button" class="btn cancel" onclick="CloseNewCustomerForm()">Cancel</button>
+            </form>
+            
+            <form id="EditCustomer" style="display: none;">
+            <h3>Edit Customer</h3>
+                <label for="customer_FirstName"><b>First Name</b></label>
+                <input type="text" placeholder="Enter First Name" name="customer_FirstName" required>
+            
+                <label for="customer_LastName"><b>Last Name</b></label>
+                <input type="text" placeholder="Enter Last Name" name="customer_LastName" required>
+
+                <label for="customer_Address"><b>Address</b></label>
+                <input type="text" placeholder="Enter Address" name="customer_Address" required>
+            
+                <label for="customer_PhoneNumber"><b>Phone Number</b></label>
+                <input type="text" placeholder="Enter Phone Number" name="customer_PhoneNumber" required>
+
+                <label for="customer_EmailAddress"><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" name="customer_EmailAddress" required>
+            
+                <button type="submit" class="btn">Update Customer</button>
+                <button type="button" class="btn cancel" onclick="CloseupdateCustomer()">Cancel</button>
+            </form>
+          <!-- </div> -->
+        <script>
+            function NewCustomerForm() {
+              document.getElementById("NewCustomerForm").style.display = "block";
+            }
+            
+            function CloseNewCustomerForm() {
+              document.getElementById("NewCustomerForm").style.display = "none";
+            }
+
+            function updateCustomer() {
+                document.getElementById("EditCustomer").style.display = "block";
+            }
+            
+            function CloseupdateCustomer() {
+                document.getElementById("EditCustomer").style.display = "none";
+            }
+            // function NewFindCustomerForm() {
+            //   document.getElementById("NewFindCustomerForm").style.display = "block";
+            // }
+            
+            // function CloseNewFindCustomerForm() {
+            //   document.getElementById("NewFindCustomerForm").style.display = "none";
+            // }
+
+        </script>

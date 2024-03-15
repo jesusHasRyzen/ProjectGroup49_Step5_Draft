@@ -1,0 +1,95 @@
+<h1>Models</h1>
+<div id="Models">
+  <table id="Model-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+	    <th>delete</th>
+        <th>edit</th>
+        </tr>
+    </thead>
+     {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr data-value={{this.model_ID}}>
+            <td>{{this.model_ID}}</td>
+            <td>{{this.model_Name}}</td>
+            <td>{{this.model_Year}}</td>
+	    <td><button onclick="deleteCustomer({{this.customer_ID}})">Delete</button></td>
+        <td><button onclick="OpenupdateCustomer({{this.customer_ID}})">Edit</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+    <button class="button newModel" onclick="NewModelForm()">New Model</button>
+        <button class="button FindModel" onclick="NewFindModelForm()">Find Model</button>
+        <!-- <div class="form-popup" id="NewCustomerForm"> -->
+            <form id="NewModelForm" class="form-container" style="display: none;">
+              <h1>New Model</h1>
+          
+              <label for="model_ID"><b>Model ID</b></label>
+              <input type="text" placeholder="Enter Model ID" name="model_ID" required>
+          
+              <label for="model_Name"><b>Model Name</b></label>
+              <input type="text" placeholder="Enter Model Name" name="model_Name" required>
+
+              <label for="model_Year"><b>Model Year</b></label>
+              <input type="text" placeholder="Enter Model Year" name="model_Year" required>
+          
+              <button type="submit" class="btn">Enter New Model</button>
+              <button type="button" class="btn cancel" onclick="CloseNewModelForm()">Cancel</button>
+            </form>
+
+            <form id="EditModelForm" class="form-container" style="display: none;">
+                <h1>Edit Model</h1>
+            
+                <label for="model_ID"><b>Model ID</b></label>
+                <input type="text" placeholder="Enter Model ID" name="model_ID" required>
+            
+                <label for="model_Name"><b>Model Name</b></label>
+                <input type="text" placeholder="Enter Model Name" name="model_Name" required>
+  
+                <label for="model_Year"><b>Model Year</b></label>
+                <input type="text" placeholder="Enter Model Year" name="model_Year" required>
+            
+                <button type="submit" class="btn">Update Model</button>
+                <button type="button" class="btn cancel" onclick="CloseupdateModelForm()">Cancel</button>
+              </form>
+          <!-- </div> -->
+        <script>
+            function NewModelForm() {
+              document.getElementById("NewModelForm").style.display = "block";
+            }
+            
+            function CloseNewModelForm() {
+              document.getElementById("NewModelForm").style.display = "none";
+            }
+
+            function updateModel() {
+              document.getElementById("EditModelForm").style.display = "block";
+            }
+            
+            function CloseupdateModelForm() {
+              document.getElementById("EditModelForm").style.display = "none";
+            }
+            
+            // function NewFindCustomerForm() {
+            //   document.getElementById("NewFindCustomerForm").style.display = "block";
+            // }
+            
+            // function CloseNewFindCustomerForm() {
+            //   document.getElementById("NewFindCustomerForm").style.display = "none";
+            // }
+
+        </script>
