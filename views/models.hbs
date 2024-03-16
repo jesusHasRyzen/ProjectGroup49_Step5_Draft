@@ -32,6 +32,19 @@
         {{/each}}
     </tbody>
 </table>
+<form id="add-model-form" method="POST" action="/add-model-form">
+    
+    <label for="input-mid">Model ID: </label>
+    <input type="number" name="input-mid" id="input-mid">
+
+    <label for="input-name">Model Name: </label>
+    <input type="text" name="input-name" id="input-name">
+    
+    <label for="input-year">Model Year: </label>
+    <input type="text" name="input-year" id="input-year">
+
+    <input type="submit">
+</form>
     <button class="button newModel" onclick="NewModelForm()">New Model</button>
         <button class="button FindModel" onclick="NewFindModelForm()">Find Model</button>
         <!-- <div class="form-popup" id="NewCustomerForm"> -->

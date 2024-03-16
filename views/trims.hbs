@@ -34,6 +34,28 @@
         {{/each}}
     </tbody>
 </table>
+<form id="add-trim-form" method="POST" action="/add-trim-form">
+    
+    <label for="input-tid">Trim ID: </label>
+    <input type="number" name="input-tid" id="input-tid">
+
+    <label for="input-name">Trim Name: </label>
+    <input type="text" name="input-name" id="input-name">
+    
+    <label for="input-units">Trim Units: </label>
+    <input type="text" name="input-units" id="input-units">
+
+    <label for="input-msrp">Trim MSRP: </label>
+    <input type="text" name="input-msrp" id="input-msrp">
+
+    <label for="input-model">Trim Model: </label>
+    <input type="text" name="input-model" id="input-model">
+    
+    <label for="input-iid">Inventory ID: </label>
+    <input type="text" name="input-iid" id="input-iid">
+
+    <input type="submit">
+</form>
     <button class="button newTrim" onclick="NewTrimForm()">New Trim</button>
         <button class="button FindTrim" onclick="NewFindTrimForm()">Find Trim</button>
         <!-- <div class="form-popup" id="NewCustomerForm"> -->

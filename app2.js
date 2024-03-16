@@ -80,7 +80,6 @@ app.get('/invoices', function(req, res)
 	})
 })
 app.post('/add-invoice-form', function(req, res){
-
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
     
@@ -97,7 +96,6 @@ app.post('/add-invoice-form', function(req, res){
             console.log(error)
             res.sendStatus(400);
         }
-
         // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
         // presents it on the screen
         else
@@ -115,7 +113,31 @@ app.post('/add-invoice-form', function(req, res){
         	res.render('models', {data: rows});                      // Note the call to render() and not send(). Using render() ensures the templating engine
 	})
     })
+app.post('/add-model-form', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+    
+    // Create the query and run it on the database
+    
+    query1 = `INSERT INTO Models(model_ID, model_name, model_Year)
+    VALUES('${data['input-mid']}', '${data['input-name']}' , '${data['input-year']}')`;
+    db.pool.query(query1, function(error, rows, fields){
 
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/models');
+        }
+    })
+})
 app.get('/trims', function(req, res)
     {
         let query1 = "SELECT * FROM Trims;";                        // Define our query
@@ -124,8 +146,32 @@ app.get('/trims', function(req, res)
 
         	res.render('trims', {data: rows});                      // Note the call to render() and not send(). Using render() ensures the templating engine
 	})
-    })
+})
+app.post('/add-trim-form', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+    
+    // Create the query and run it on the database
+    
+    query1 = `INSERT INTO Trims(trim_ID, trim_name, trim_Units, trim_MSRP, models_Models, inventory_ID)
+    VALUES('${data['input-tid']}', '${data['input-name']}' , '${data['input-units']}', '${data['input-msrp']}', '${data['input-model']}', '${data['input-iid']}')`;
+    db.pool.query(query1, function(error, rows, fields){
 
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/trims');
+        }
+    })
+})
 //READ Customers
 app.get('/', function(req, res)
     {
