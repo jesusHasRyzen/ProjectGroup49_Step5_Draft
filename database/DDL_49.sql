@@ -188,7 +188,7 @@ INSERT INTO Invoices_Trims(
 invoice_ID,
 trim_ID
 )
-VALUES
+
 (SELECT invoice_ID FROM Invoices WHERE trim_ID = (SELECT trim_ID FROM Trims WHERE trim_Name = 'Sprint')),
 (SELECT trim_ID FROM Trims WHERE trim_Name = 'Sprint');
 
@@ -197,7 +197,7 @@ INSERT INTO Models_Invoices(
 model_ID,
 invoice_ID
 )
-VALUES
+
 (SELECT model_ID FROM Models WHERE model_Name = 'Giulia'),
 (SELECT invoice_ID FROM Invoices WHERE invoice_ID = (select invoice_ID FROM Invoices Where model_Name = 'Giulia'));
 
