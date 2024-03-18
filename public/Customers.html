@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html>
 <body>
-
+    <head>
+        <title>Employees</title>
+        <link rel="stylesheet" type="text/css" href="file:///C:/Users/mibra/Downloads/ProjectGroup49_Step5_Draft/ProjectGroup49_Step5_Draft/public/css/style.css">
+    </head>
+    <body onload="Main()">
+        <nav id= "Invoices">
+            <h2><a href='Customers.html'>Customers</a></h2>
+            <h2><a href="Employees.html" >Employees</a></h2>
+            <h2><a href="Models.html" >Models</a></h2>
+            <h2><a href="index.html">Home Page</a></h2>
+            <h2><a href="Trims.html" >Trims</a></h2>
+            <h2><a href="Invoices.html" >Invoices</a></h2>
+            <h2><a href="Inventory.html" >Inventory</a></h2>
+        </nav>
+    <body>
 <h1>Customers</h1>
     <div id="Customers">
-        <button class="button newCustomer" onclick="NewCustomerForm()">New Customer</button>
+        <button class="button newCustomer" onclick="NewCustomerForm()">Add Customer</button>
         <button class="button FindCustomer" onclick="NewFindCustomerForm()">Find Customer</button>
         <!-- <div class="form-popup" id="NewCustomerForm"> -->
             <form id="NewCustomerForm" class="form-container" style="display: none;">
-              <h1>New Customer</h1>
+              <h1>Add a New Customer</h1>
           
               <label for="customer_FirstName"><b>First Name</b></label>
               <input type="text" placeholder="Enter First Name" name="customer_FirstName" required>
@@ -23,7 +37,7 @@
               <input type="text" placeholder="Enter Phone Number" name="customer_PhoneNumber" required>
 
               <label for="customer_EmailAddress"><b>Email</b></label>
-              <input type="text" placeholder="Enter Email" name="customer_EmailAddress" required>
+              <input type="text" placeholder="Enter Email Address" name="customer_EmailAddress" required>
           
               <button type="submit" class="btn">Enter New Customer</button>
               <button type="button" class="btn cancel" onclick="CloseNewCustomerForm()">Cancel</button>
@@ -121,7 +135,7 @@
         </table>
     </div>
 
-<p><a href="index.html" onClick="Main()">HomePage</a> </p>
+
 
 
 
