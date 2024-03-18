@@ -21,7 +21,10 @@ CREATE OR REPLACE TABLE Customers (
   customer_EmailAddress VARCHAR(45) NOT NULL,
   PRIMARY KEY (customer_ID)
   );
- 
+  
+  -- start employee id count at 100
+ ALTER TABLE Customers AUTO_INCREMENT=100;
+
 -- creates Employees table with PK as employee_ID
 CREATE OR REPLACE TABLE Employees (
   employee_ID INT AUTO_INCREMENT,
@@ -32,6 +35,9 @@ CREATE OR REPLACE TABLE Employees (
   employee_EmailAddress VARCHAR(45) NOT NULL,
   PRIMARY KEY (employee_ID)
   );
+  -- start employee id count at 300
+  ALTER TABLE Employees AUTO_INCREMENT=300;
+
   
 -- creates Inventory table with PK as Inventory_Id
 CREATE OR REPLACE Table Inventory (
@@ -40,7 +46,9 @@ CREATE OR REPLACE Table Inventory (
   available_UnitsForOrder INT NOT NULL,
   PRIMARY KEY (inventory_ID)
   );
-  
+ -- start Inventory id count at 300
+  ALTER TABLE Inventory AUTO_INCREMENT=500;
+
 -- creates Invoices table with PK as invoice_ID
 -- has relationships to Customers and Emmployees tables to get each's ID from parent tables
 CREATE OR REPLACE TABLE Invoices (
@@ -58,6 +66,8 @@ CREATE OR REPLACE TABLE Invoices (
   ON DELETE CASCADE
   );
 
+-- start Invoices id count at 700
+  ALTER TABLE Invoices AUTO_INCREMENT=700;
 
    
  -- creates Models table with PK as model_ID
@@ -86,9 +96,10 @@ CREATE OR REPLACE TABLE Trims (
   );
 
 CREATE OR REPLACE TABLE Invoices_Trims (
+  Invoices_Trims_ID INT AUTO_INCREMENT,
   invoice_ID INT NOT NULL,
   trim_ID INT NOT NULL,
-  
+  PRIMARY KEY (Invoices_Trims_ID),
   FOREIGN KEY (invoice_ID) REFERENCES Invoices(invoice_ID) ON DELETE CASCADE,
   FOREIGN KEY (trim_ID) REFERENCES Trims(trim_ID) 
   ON DELETE CASCADE
@@ -107,42 +118,76 @@ CREATE OR REPLACE TABLE Models_Invoices (
 --- Alter tables with Cascade functionality
 
  
- 
-INSERT INTO Customers(customer_ID, customer_FirstName, customer_LastName, customer_Address, customer_PhoneNumber, customer_EmailAddress)
-VALUES
-(520, 'Jennifer', 'Microsoft', '2740 Kelley Road',	'318-265-0275',	'JenniferMicrosoft@email.com'),
-(103, 'Juan',	'Netflix',	'4964 Carter Street',	'405-622-5875',	'JuanNetflix@email.com'),
-(777, 'Q', 'Gnome',	'1939 Ritter Avenue',	'318-265-0278',	'QGnome@email.com'),
-(900, 'Alice', 'Apple',	'1066 Davis Lane',	'405-622-5876',	'AliceApple@email.com'),
-(109, 'Catherine',	'Yoda',	'4830 Straford Park',	'318-265-0276',	'CatherineYoda@email.com'),
-(107, 'James',	'Prime',	'619 Tator Patch Road',	'405-622-5872',	'JamesPrime@email.com'),
-(105, 'Jose',	'Hulu',	'3233 Ridenour Street',	'405-622-5874',	'JoseHulu@email.com'),
-(730, 'M',	'Valentine',	'478 Lakeland Terrace',	'318-265-0279',	'MValentine@email.com'),
-(111, 'Kenneth',	'Lights',	'4846 Polk Street',	'405-622-5873',	'KennethLights@email.com'),
-(210, 'Tom',	'Sony',	'3573 Hott Street',	'318-265-0277',	'TomSony@email.com');
 
-INSERT INTO Employees(employee_ID, employee_FirstName, employee_LastName, employee_Address, employee_PhoneNumber, employee_EmailAddress)
+INSERT INTO Customers(customer_FirstName, customer_LastName, customer_Address, customer_PhoneNumber, customer_EmailAddress)
 VALUES
-(103,	'Juan',	'Netflix',	'2740 Kelley Road',	'405-622-5872',	'JuanNetflix@email.com'),
-(105,	'Jose',	'Hulu',	'4964 Carter Street',	'318-265-0275',	'JoseHulu@email.com'),
-(107,	'James',	'Prime',	'1939 Ritter Avenue',	'405-622-5873',	'JamesPrime@email.com'),
-(109,	'Catherine',	'Yoda',	'1066 Davis Lane',	'318-265-0276',	'CatherineYoda@email.com'),
-(111,	'Kenneth',	'Lights',	'4830 Straford Park',	'405-622-5874',	'KennethLights@email.com'),
-(210,	'Tom',	'Sony',	'619 Tator Patch Road',	'318-265-0277',	'TomSony@email.com'),
-(520,	'Jennifer',	'Microsoft',	'3233 Ridenour Street',	'405-622-5875',	'JenniferMicrosoft@email.com'),
-(900,	'Alice',	'Apple',	'478 Lakeland Terrace',	'318-265-0278',	'AliceApple@email.com'),
-(730,	'M',	'Valentine',	'478 Lakeland Terrace',	'405-622-5876',	'MValentine@email.com'),
-(777,	'Q',	'Gnome',	'3573 Hott Street',	'318-265-0279',	'QGnome@email.com');
+( 'Jennifer', 'Microsoft', '2740 Kelley Road',	'318-265-0275',	'JenniferMicrosoft@email.com'),
+( 'Juan',	'Netflix',	'4964 Carter Street',	'405-622-5875',	'JuanNetflix@email.com'),
+( 'Q', 'Gnome',	'1939 Ritter Avenue',	'318-265-0278',	'QGnome@email.com'),
+( 'Alice', 'Apple',	'1066 Davis Lane',	'405-622-5876',	'AliceApple@email.com'),
+( 'Catherine',	'Yoda',	'4830 Straford Park',	'318-265-0276',	'CatherineYoda@email.com'),
+( 'James',	'Prime',	'619 Tator Patch Road',	'405-622-5872',	'JamesPrime@email.com'),
+( 'Jose',	'Hulu',	'3233 Ridenour Street',	'405-622-5874',	'JoseHulu@email.com'),
+( 'M',	'Valentine',	'478 Lakeland Terrace',	'318-265-0279',	'MValentine@email.com'),
+( 'Kenneth',	'Lights',	'4846 Polk Street',	'405-622-5873',	'KennethLights@email.com'),
+( 'Tom',	'Sony',	'3573 Hott Street',	'318-265-0277',	'TomSony@email.com'); 
+-- INSERT INTO Customers(customer_ID, customer_FirstName, customer_LastName, customer_Address, customer_PhoneNumber, customer_EmailAddress)
+-- VALUES
+-- (520, 'Jennifer', 'Microsoft', '2740 Kelley Road',	'318-265-0275',	'JenniferMicrosoft@email.com'),
+-- (103, 'Juan',	'Netflix',	'4964 Carter Street',	'405-622-5875',	'JuanNetflix@email.com'),
+-- (777, 'Q', 'Gnome',	'1939 Ritter Avenue',	'318-265-0278',	'QGnome@email.com'),
+-- (900, 'Alice', 'Apple',	'1066 Davis Lane',	'405-622-5876',	'AliceApple@email.com'),
+-- (109, 'Catherine',	'Yoda',	'4830 Straford Park',	'318-265-0276',	'CatherineYoda@email.com'),
+-- (107, 'James',	'Prime',	'619 Tator Patch Road',	'405-622-5872',	'JamesPrime@email.com'),
+-- (105, 'Jose',	'Hulu',	'3233 Ridenour Street',	'405-622-5874',	'JoseHulu@email.com'),
+-- (730, 'M',	'Valentine',	'478 Lakeland Terrace',	'318-265-0279',	'MValentine@email.com'),
+-- (111, 'Kenneth',	'Lights',	'4846 Polk Street',	'405-622-5873',	'KennethLights@email.com'),
+-- (210, 'Tom',	'Sony',	'3573 Hott Street',	'318-265-0277',	'TomSony@email.com');
+
+
+INSERT INTO Employees( employee_FirstName, employee_LastName, employee_Address, employee_PhoneNumber, employee_EmailAddress)
+VALUES
+(	'Juan',	'Netflix',	'2740 Kelley Road',	'405-622-5872',	'JuanNetflix@email.com'),
+(	'Jose',	'Hulu',	'4964 Carter Street',	'318-265-0275',	'JoseHulu@email.com'),
+(	'James',	'Prime',	'1939 Ritter Avenue',	'405-622-5873',	'JamesPrime@email.com'),
+(	'Catherine',	'Yoda',	'1066 Davis Lane',	'318-265-0276',	'CatherineYoda@email.com'),
+(	'Kenneth',	'Lights',	'4830 Straford Park',	'405-622-5874',	'KennethLights@email.com'),
+(	'Tom',	'Sony',	'619 Tator Patch Road',	'318-265-0277',	'TomSony@email.com'),
+(	'Jennifer',	'Microsoft',	'3233 Ridenour Street',	'405-622-5875',	'JenniferMicrosoft@email.com'),
+(	'Alice',	'Apple',	'478 Lakeland Terrace',	'318-265-0278',	'AliceApple@email.com'),
+(	'M',	'Valentine',	'478 Lakeland Terrace',	'405-622-5876',	'MValentine@email.com'),
+(	'Q',	'Gnome',	'3573 Hott Street',	'318-265-0279',	'QGnome@email.com');
+-- INSERT INTO Employees(employee_ID, employee_FirstName, employee_LastName, employee_Address, employee_PhoneNumber, employee_EmailAddress)
+-- VALUES
+-- (103,	'Juan',	'Netflix',	'2740 Kelley Road',	'405-622-5872',	'JuanNetflix@email.com'),
+-- (105,	'Jose',	'Hulu',	'4964 Carter Street',	'318-265-0275',	'JoseHulu@email.com'),
+-- (107,	'James',	'Prime',	'1939 Ritter Avenue',	'405-622-5873',	'JamesPrime@email.com'),
+-- (109,	'Catherine',	'Yoda',	'1066 Davis Lane',	'318-265-0276',	'CatherineYoda@email.com'),
+-- (111,	'Kenneth',	'Lights',	'4830 Straford Park',	'405-622-5874',	'KennethLights@email.com'),
+-- (210,	'Tom',	'Sony',	'619 Tator Patch Road',	'318-265-0277',	'TomSony@email.com'),
+-- (520,	'Jennifer',	'Microsoft',	'3233 Ridenour Street',	'405-622-5875',	'JenniferMicrosoft@email.com'),
+-- (900,	'Alice',	'Apple',	'478 Lakeland Terrace',	'318-265-0278',	'AliceApple@email.com'),
+-- (730,	'M',	'Valentine',	'478 Lakeland Terrace',	'405-622-5876',	'MValentine@email.com'),
+-- (777,	'Q',	'Gnome',	'3573 Hott Street',	'318-265-0279',	'QGnome@email.com');
 
 INSERT INTO Invoices(employee_ID, customer_ID, model_ID, trim_ID, quantity, total_Price)
 VALUES
-(210,	520,	17003,	70,	1,	43845.00),
-(103,	109,	17001,	68,	1,	51040.00),
-(103,	900,	17001,	70,	1,	43845.00),
-(111,	109,	17003,	70,	1,	43845.00),
-(210,	730,	17002,	69,	1,	46500.00),
-(777,	105,	17003,	69,	1,	46500.00),
-(777,	520,	17002,	70,	1,	43845.00);
+(303,	101,	17003,	70,	1,	43845.00),
+(301,	102,	17001,	68,	1,	51040.00),
+(301,	104,	17001,	70,	1,	43845.00),
+(309,	107,	17003,	70,	1,	43845.00),
+(308,	103,	17002,	69,	1,	46500.00),
+(308,	105,	17003,	69,	1,	46500.00),
+(309,	102,	17002,	70,	1,	43845.00);
+-- INSERT INTO Invoices(employee_ID, customer_ID, model_ID, trim_ID, quantity, total_Price)
+-- VALUES
+-- (210,	520,	17003,	70,	1,	43845.00),
+-- (103,	109,	17001,	68,	1,	51040.00),
+-- (103,	900,	17001,	70,	1,	43845.00),
+-- (111,	109,	17003,	70,	1,	43845.00),
+-- (210,	730,	17002,	69,	1,	46500.00),
+-- (777,	105,	17003,	69,	1,	46500.00),
+-- (777,	520,	17002,	70,	1,	43845.00);
 
 INSERT INTO Models(model_ID, model_Year, model_Name)
 VALUES
@@ -159,47 +204,222 @@ VALUES
 (16993,	2021,	'Stelvio'),
 (16992,	2021,	'Tonale');
 
-INSERT INTO Inventory(inventory_ID, available_UnitsOnSite, available_UnitsForOrder)
+INSERT INTO Inventory( available_UnitsOnSite, available_UnitsForOrder)
 VALUES
-(999998,	22,	2),
-(999997,	20,	2),
-(999996,	20,	2),
-(999995,	22,	4),
-(999994,	25,	4),
-(999993,	23,	3),
-(999992,	21,	3),
-(999991,	27,	3),
-(999990,	24,	3),
-(999989,	25,	2),
-(999988,	27,	3),
-(999987,	21,	4),
-(999986,	24,	4),
-(999985,	26,	4),
-(999984,	23,	1),
-(999983,	26,	2);
+(	22,	2),
+(	20,	2),
+(	20,	2),
+(	22,	4),
+(	25,	4),
+(	23,	3),
+(	21,	3),
+(	27,	3),
+(	24,	3),
+(	25,	2),
+(	27,	3),
+(	21,	4),
+(	24,	4),
+(	26,	4),
+(	23,	1),
+(	22,	5),
+(	20,	1),
+(	26,	2),
+(	19,	2),
+(	27,	2),
+(	19,	2),
+(	16,	3),
+(	28,	0),
+(	26,	8),
+(	16,	5),
+(	19,	2),
+(	16,	2),
+(	6,	1),
+(	15,	4),
+(	21,	3),
+(	28,	2),
+(	26,	1),
+(	24,	0),
+(	22,	4),
+(	20,	3),
+(	22,	2);
+-- INSERT INTO Inventory(inventory_ID, available_UnitsOnSite, available_UnitsForOrder)
+-- VALUES
+-- (999998,	22,	2),
+-- (999997,	20,	2),
+-- (999996,	20,	2),
+-- (999995,	22,	4),
+-- (999994,	25,	4),
+-- (999993,	23,	3),
+-- (999992,	21,	3),
+-- (999991,	27,	3),
+-- (999990,	24,	3),
+-- (999989,	25,	2),
+-- (999988,	27,	3),
+-- (999987,	21,	4),
+-- (999986,	24,	4),
+-- (999985,	26,	4),
+-- (999984,	23,	1),
+-- (999983,	22,	5),
+-- (999982,	20,	1),
+-- (999981,	26,	2),
+-- (999980,	19,	2),
+-- (999979,	27,	2),
+-- (999978,	19,	2),
+-- (999977,	16,	3),
+-- (999976,	28,	0),
+-- (999975,	26,	8),
+-- (999974,	16,	5),
+-- (999973,	19,	2),
+-- (999972,	16,	2),
+-- (999971,	6,	1),
+-- (999970,	15,	4),
+-- (999969,	21,	3),
+-- (999968,	28,	2),
+-- (999967,	26,	1),
+-- (999966,	24,	0),
+-- (999965,	22,	4),
+-- (999964,	20,	3),
+-- (999963,	22,	2);
 
 INSERT INTO Trims(trim_ID, trim_Name, trim_Units, trim_MSRP, models_Models, inventory_ID)
 VALUES
-(70,	'Sprint',	22,	43845,	17001, 999998),
-(69,	'Ti',	20,	46500,	17001, 999998),
-(68,	'Veloce',	25,	51040,	17001, 999998);
+(70,	'Sprint',	22,	43845,	17003, 500),
+(69,	'Ti',	20,	46500,	17003, 501),
+(68,	'Veloce',	25,	51040,	17003, 502),
+
+(67, 'Sprint', 34, 42845, 17002, 503),
+(66, 'Ti', 21, 45500, 17002, 504),
+(65, 'Veloce', 26, 50405, 17002, 505),
+
+(64, 'Sprint', 30, 41845, 17001, 506),
+(63, 'TI', 19, 44450, 17001, 507),
+(62, 'Veloce', 22, 49445, 17001, 508),
+
+(61, 'Sprint', 33, 40845, 17000, 509),
+(60, 'TI', 13, 43450, 17000, 510),
+(59, 'Veloce', 7, 48845, 17000, 511),
+
+(58, 'Sprint', 10, 39845, 16999, 512),
+(57, 'TI', 11, 42400, 16999, 513),
+(56, 'Veloce', 12, 47845, 16999, 514),
+
+(55, 'Sprint', 3, 37845, 16998, 515),
+(54, 'TI', 9, 41450, 16998, 516),
+(53, 'Veloce', 2, 46845, 16998, 517),
+
+(52, 'Sprint', 0, 33845, 16997, 518),
+(51, 'TI', 2, 36450, 16997, 519),
+(50, 'Veloce', 4, 40845, 16997, 520),
+
+(49, 'Sprint', 0, 31845, 16996, 521),
+(48, 'TI', 2, 37450, 16996, 522),
+(47, 'Veloce', 2, 38845, 16996, 523),
+
+(46, 'Sprint', 2, 29845, 16995, 524),
+(45, 'TI', 1, 32450, 16995, 525),
+(44, 'Veloce', 2, 35845, 16995, 526),
+
+(43, 'Sprint', 5, 25845, 16994, 527),
+(42, 'TI', 11, 30450, 16994, 528),
+(41, 'Veloce', 3, 33845, 16994, 529),
+
+(40, 'Sprint', 2, 29000, 16993, 530),
+(39, 'TI', 1, 29450, 16993, 531),
+(38, 'Veloce', 0, 34700, 16993, 532),
+
+(37, 'Sprint', 4, 28900, 16992, 533),
+(36, 'TI', 0, 29000, 16992, 534),
+(35, 'Veloce', 0, 34250, 16992, 535);
+
+-- INSERT INTO Trims(trim_ID, trim_Name, trim_Units, trim_MSRP, models_Models, inventory_ID)
+-- VALUES
+-- (70,	'Sprint',	22,	43845,	17003, 999998),
+-- (69,	'Ti',	20,	46500,	17003, 999997),
+-- (68,	'Veloce',	25,	51040,	17003, 999996),
+
+-- (67, 'Sprint', 34, 42845, 17002, 999995),
+-- (66, 'Ti', 21, 45500, 17002, 999994),
+-- (65, 'Veloce', 26, 50405, 17002, 999993),
+
+-- (64, 'Sprint', 30, 41845, 17001, 999992),
+-- (63, 'TI', 19, 44450, 17001, 999991),
+-- (62, 'Veloce', 22, 49445, 17001, 999990),
+
+-- (61, 'Sprint', 33, 40845, 17000, 999989),
+-- (60, 'TI', 13, 43450, 17000, 999988),
+-- (59, 'Veloce', 7, 48845, 17000, 999987),
+
+-- (58, 'Sprint', 10, 39845, 16999, 999986),
+-- (57, 'TI', 11, 42400, 16999, 999985),
+-- (56, 'Veloce', 12, 47845, 16999, 999984),
+
+-- (55, 'Sprint', 3, 37845, 16998, 999983),
+-- (54, 'TI', 9, 41450, 16998, 999982),
+-- (53, 'Veloce', 2, 46845, 16998, 999981),
+
+-- (52, 'Sprint', 0, 33845, 16997, 999980),
+-- (51, 'TI', 2, 36450, 16997, 999979),
+-- (50, 'Veloce', 4, 40845, 16997, 999978),
+
+-- (49, 'Sprint', 0, 31845, 16996, 999977),
+-- (48, 'TI', 2, 37450, 16996, 999976),
+-- (47, 'Veloce', 2, 38845, 16996, 999975),
+
+-- (46, 'Sprint', 2, 29845, 16995, 99974),
+-- (45, 'TI', 1, 32450, 16995, 999973),
+-- (44, 'Veloce', 2, 35845, 16995, 999972),
+
+-- (43, 'Sprint', 5, 25845, 16994, 999971),
+-- (42, 'TI', 11, 30450, 16994, 999970),
+-- (41, 'Veloce', 3, 33845, 16994, 999969),
+
+-- (40, 'Sprint', 2, 29000, 16993, 999968),
+-- (39, 'TI', 1, 29450, 16993, 999967),
+-- (38, 'Veloce', 0, 34700, 16993, 999966),
+
+-- (37, 'Sprint', 4, 28900, 16992, 999965),
+-- (36, 'TI', 0, 29000, 16992, 999964),
+-- (35, 'Veloce', 0, 34250, 16992, 999963);
+
+-- returns all the trim id of veloce
+SELECT trim_ID FROM Invoices WHERE trim_ID in (SELECT trim_ID FROM Trims WHERE trim_Name = 'Veloce');  
+-- returns the correct invoice id with matching trim id
+SELECT invoice_ID FROM Invoices WHERE trim_ID = 68;
+-- returns correct output
+SELECT invoice_ID, trim_ID FROM Invoices;
+-- SELECT invoice_ID FROM Invoices WHERE trim_ID = (SELECT trim_ID FROM Trims WHERE trim_Name = 'Veloce');
 
 INSERT INTO Invoices_Trims(
 invoice_ID,
 trim_ID
 )
-VALUES
-(SELECT invoice_ID FROM Invoices WHERE trim_ID = (SELECT trim_ID FROM Trims WHERE trim_Name = 'Sprint')),
-(SELECT trim_ID FROM Trims WHERE trim_Name = 'Sprint');
-
+(SELECT invoice_ID, trim_ID FROM Invoices);
+-- (SELECT trim_ID FROM Trims WHERE trim_Name = 'Veloce'));
+-- INSERT INTO Invoices_Trims(
+-- invoice_ID,
+-- trim_ID
+-- )
+-- VALUES
+-- ((SELECT invoice_ID FROM Invoices WHERE trim_ID = SELECT trim_ID FROM Trims WHERE trim_Name = 'Sprint'), 
+-- (SELECT trim_ID FROM Trims WHERE trim_Name = 'Sprint'));
 
 INSERT INTO Models_Invoices(
 model_ID,
 invoice_ID
 )
-VALUES
-(SELECT model_ID FROM Models WHERE model_Name = 'Giulia'),
-(SELECT invoice_ID FROM Invoices WHERE invoice_ID = (select invoice_ID FROM Invoices Where model_Name = 'Giulia'));
+(SELECT invoice_ID, model_ID FROM Invoices);
+
+-- INSERT INTO Models_Invoices(
+-- model_ID,
+-- invoice_ID
+-- )
+-- VALUES
+-- (SELECT model_ID FROM Models WHERE model_Name = 'Giulia'),
+-- (SELECT invoice_ID FROM Invoices WHERE invoice_ID = (select invoice_ID FROM Invoices Where model_Name = 'Giulia'));
+
+
+-- commented out for testing below +++++++++++++++++++++++++++++++++
+
 
 -- Testing cascade capabilities.
 SELECT * FROM Customers;
@@ -212,7 +432,14 @@ SELECT * FROM Models;
 -- select * from Models_Invoices;
 SELECT * FROM Trims;
 
-DELETE FROM Employees where Employee_Id = 210;
+-- mine below testing
+DELETE FROM Employees where Employee_Id = 303;
+
+-- DELETE FROM Employees where Employee_Id = 210;
 SELECT * FROM Employees;
 SELECT * FROM Invoices;
+
+select * FROM Invoices_Trims;
+
+select * FROM Models_Invoices;
 
