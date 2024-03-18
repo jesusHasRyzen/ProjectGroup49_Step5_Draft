@@ -1,0 +1,206 @@
+@import-normalize;
+@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');;
+@import "component1.css";
+
+:root {
+  --ferrariRed: #d92222;
+  --electricYellow: #e1ff00;
+  --valleyGreen: #38453B;
+  --stoneGrey: #B0B6B4;
+  --blueNight: #292F3B;
+  --accent: #FAD989;
+  --custom-size: 200%;
+}
+
+body {
+  
+    background-image: url('file:///C:/Users/mibra/Downloads/ProjectGroup49_Step5_Draft/ProjectGroup49_Step5_Draft/public/img/download.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  
+  
+}
+
+main, div, footer {
+  padding: 20px;
+}
+
+main {
+  background-color: var(--blueNight);
+  color: #fff;
+}
+
+div {
+  background-color:rgba(0, 0, 0, 0.45);
+}
+
+footer {
+  background-color: var(--blueNight);
+}
+
+/* ------ NAVIGATION ----------*/
+nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: rgba(0, 0, 0, 0.35);
+  border-radius: 10px; /* Rounded corners */
+  padding: 10px 0;
+  font-family: 'Patua One', sans-serif;
+  font-weight: 100;
+}
+
+nav a {
+  background-color: black;
+  color:white;
+  font-weight: lighter;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+
+}
+
+nav a:hover {
+  font-family: 'Patua One', sans-serif;
+  background-color:white;
+  border-radius: 5px;
+  color: black;
+  font-weight: lighter
+
+}
+
+/*-------- TYPOGRAPHY ----------*/
+;
+
+h1, h2, h3 {
+  font-family: 'Sonsie One', sans-serif; 
+  color: black;
+  text-align: center;
+  
+}
+
+/*--------- TABLE --------------*/
+table {
+  margin-top: 20px;
+  border-collapse: collapse;
+  background-color: rgba(255, 255, 255, 0.6);
+  width: 100%;
+  font-weight: bold;
+  text-align: center;
+  color:black;
+  font-size: large;
+  
+
+}
+
+th, td {
+ 
+  padding: 8px;
+}
+
+th {
+  background-color: var(--ferrariRed);
+  color: black;
+  text-align: center;
+  font-weight: bold;
+  font-size: large;
+}
+
+/*  ----- Form ----- */
+form {
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+fieldset {
+
+  border: 2px solid var(--ferrariRed);
+  border-radius: 5px;
+  padding: 20px;
+}
+
+legend {
+  background-color: rgba(165, 29, 29, 0.9);
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  color:white;
+  align-content: center;
+  font-size: large;
+  font-weight: bold;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.btn {
+  color: white;
+  background-color: var(--ferrariRed);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: var(--electricYellow);
+  color: var(--ferrariRed);
+}
+
+.checkbos {
+  display: ;
+}
+
+/* Custom classes */
+.mainStyle {
+  width: 70%;
+  margin: 0 auto;
+  background-color: rgba(240, 240, 240, 0.1); /* 10% opacity */
+  padding: 20px;
+  
+}
+
+
+button{
+  margin-top: 10px;
+
+}
+a.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: white; /* Blue background color */
+  color: white; /* Text color */
+  text-decoration: none; /* Remove underline */
+  border-radius: 5px; /* Rounded corners */
+  font-weight: bold; /* Bold text */
+}
+
+/* Hover effect */
+a.button:hover {
+  background-color: white; /* Darker blue on hover */
+}
+input,
+select,
+textarea {
+  font-size: 16px;
+  font-family: 'Sonsie One', sans-serif;
+  outline: none;
+}
