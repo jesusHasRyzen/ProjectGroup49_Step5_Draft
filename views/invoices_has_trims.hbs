@@ -1,0 +1,36 @@
+<h1>Invoices-Trims Tables!</h1>
+
+{{!-- Create a table --}}
+<table id="Invoices-Trims-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+	    <th>delete</th>
+        <th>edit</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr data-value={{this.Invoices_Trims_ID}}>
+            <td>{{this.Invoices_Trims_ID}}</td>
+            <td>{{this.invoice_ID}}</td>
+            <td>{{this.trim_ID}}</td>
+	    <td><button onclick="deleteCustomer({{this.Invoices_Trims_ID}})">Delete</button></td>
+        <td><button onclick="OpenupdateCustomer({{this.Invoices_Trims_ID}})">Edit</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

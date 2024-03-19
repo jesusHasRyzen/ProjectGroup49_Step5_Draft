@@ -27,13 +27,18 @@
             <td>{{this.trim_Name}}</td>
             <td>{{this.trim_Units}}</td>
             <td>{{this.trim_MSRP}}</td>
+            <td>{{this.models_Models}}</td>
+            <td>{{this.inventory_ID}}</td>
 
-	    <td><button onclick="deleteCustomer({{this.customer_ID}})">Delete</button></td>
-        <td><button onclick="OpenupdateCustomer({{this.customer_ID}})">Edit</button></td>
+	          <td><button onclick="deleteTrim({{this.trim_ID}})">Delete</button></td>
+            <td><button onclick="updateTrim({{this.trim_ID}})">Edit</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+
+<script src="/js/delete_trim.js"></script>
+
 <form id="add-trim-form" method="POST" action="/add-trim-form">
     
     <label for="input-tid">Trim ID: </label>
@@ -97,29 +102,67 @@
                 <button type="button" class="btn cancel" onclick="CloseupdateTrimForm()">Cancel</button>
               </form>
           <!-- </div> -->
-        <script>
-            function NewTrimForm() {
-              document.getElementById("NewTrimForm").style.display = "block";
-            }
-            
-            function CloseNewTrimForm() {
-              document.getElementById("NewTrimForm").style.display = "none";
-            }
+    <form id="OpenupdateTrim" style="display: none;">
+            <h3>Edit Trim</h3>
+                <label id="trim_id"><b>Trim ID</b></label>
+                <input id="trim_tid" readonly="readonly"/>
 
-            function updateTrim() {
-              document.getElementById("EditTrimForm").style.display = "block";
-            }
+                <label for="trim_Name"><b>Trim Name</b></label>
+                <input type="text" id="trim_Name">
             
-            function CloseupdateTrimForm() {
-              document.getElementById("EditTrimForm").style.display = "none";
-            }
-            
-            // function NewFindCustomerForm() {
-            //   document.getElementById("NewFindCustomerForm").style.display = "block";
-            // }
-            
-            // function CloseNewFindCustomerForm() {
-            //   document.getElementById("NewFindCustomerForm").style.display = "none";
-            // }
+                <label for="trim_Units"><b>Trim Units</b></label>
+                <input type="text" id="trim_Units">
 
-        </script>
+                <label for="trim_MSRP"><b>MSRP</b></label>
+                <input type="text" id="trim_MSRP">
+            
+                <label for="input-model"><b>Model ID</b></label>
+                <input type="text" id="trim-model">
+
+                <label for="input-iid"><b>Inventory ID</b></label>
+                <input type="text" id="trim-iid">
+            
+                <button type="submit" class="btn">Update Trim</button>
+                <button type="button" class="btn cancel" onclick="CloseupdateEmployee()">Cancel</button>
+            </form>
+      <script>
+function updateTrim(trimID) {
+    findRow(trimID);
+    document.getElementById("OpenupdateTrim").style.display = "block";
+}
+
+function CloseupdateEmployee() {
+    document.getElementById("OpenupdateTrim").style.display = "none";
+}
+function findRow(trimID){
+    
+    let table = document.getElementById("Trims-table");
+
+    for (let i = 0, row; row = table.rows[i]; i++) {
+       //iterate through rows
+       //rows would be accessed using the "row" variable assigned in the for loop
+       if (table.rows[i].getAttribute("data-value") == trimID) {
+            
+            // Get the location of the row where we found the matching person ID
+            let updateRowIndex = table.getElementsByTagName("tr")[i];
+            let tempname = updateRowIndex.cells[1];
+            let tempunits = updateRowIndex.cells[2];
+            let tempmsrp = updateRowIndex.cells[3];
+            let tempmodel = updateRowIndex.cells[4];
+            let tempiid = updateRowIndex.cells[5];
+
+
+            document.getElementById("trim_tid").value = trimID;
+            document.getElementById("trim_Name").value = tempname.innerText;
+            document.getElementById("trim_Units").value = tempunits.innerText;
+            document.getElementById("trim_MSRP").value = tempmsrp.innerText;
+            document.getElementById("trim-model").value = tempmodel.innerText;
+            document.getElementById("trim-iid").value = tempiid.innerText;
+       }
+    }
+}
+
+</script>         
+   
+
+<script src="/js/update_trim.js"></script>

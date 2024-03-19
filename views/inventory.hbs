@@ -1,21 +1,106 @@
 <h1>Inventory</h1>
 <div id="Inventory">
-    <h2><a href="#" onClick="Inventory()">Inventory</a></h2>
-    <table border="1" cellpadding="5">
+  <table id="Inventory-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
         <tr>
-            <th><a href="#" onClick="add_UnitsOnSite()">Add Unit Onsite</a></th>
-            <th><a href="#" onClick="add_UnitsForOrder()">Add Unit For Order</a></th>
-            <th>available_UnitsOnSite</th>
-            <th>available_UnitsForOrder</th>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+	      <th>delete</th>
+        <th>edit</th>
         </tr>
-        <tr>
-          <td><a href="#" onClick="addToOnSite('this.available_UnitsForOrder')">+1</a></td>
-          <td><a href="#" onclick="addToForOrder('this.available_UnitsForOrder')">+1</a></td>
-          <td align="right" >22</td>
-          <td align="right" >2</td>
+    </thead>
+     {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr data-value={{this.inventory_ID}}>
+            <td>{{this.inventory_ID}}</td>
+            <td>{{this.available_UnitsOnSite}}</td>
+            <td>{{this.available_UnitsForOrder}}</td>
+	    <td><button onclick="deleteInventory({{this.inventory_ID}})">Delete</button></td>
+        <td><button onclick="OpenupdateInventory({{this.inventory_ID}})">Edit</button></td>
         </tr>
-      
-      </table>
-    </div>
+        {{/each}}
+    </tbody>
+</table>
+<h2>Adding Data using an HTML form</h2>
+<p>To add a new Trim to Inventory, please enter their information below nad click `Submit`!</p>
+<form id="add-inventory-form" method="POST" action="/add-inventory-form">
     
-    <p><a href="/" onClick="Main()">HomePage</a> </p>
+    <label for="input-onsite">Units Available Onsite: </label>
+    <input type="number" name="input-onsite" id="input-onsite">
+
+    <label for="input-forOrder">Units Available for Order: </label>
+    <input type="number" name="input-forOrder" id="input-forOrder">
+    
+
+    <input type="submit">
+</form>
+<script src="/js/delete_inventory.js"></script>
+
+<form id="OpenupdateEmployee" style="display: none;">
+            <h3>Edit Employee</h3>
+                <label id="inventory_id"><b>Inventory ID</b></label>
+                <input id="inventory_ID" readonly="readonly" />
+                <label for="input-onsite"><b>Units Available Onsite:</b></label>
+                <input type="number" id="input-onsite">
+            
+                <label for="input-forOrder"><b>Units Available for Order:</b></label>
+                <input type="number" id="input-forOrder">
+            
+                <button type="submit" class="btn">Update Inventory</button>
+                <button type="button" class="btn cancel" onclick="CloseupdateInventory()">Cancel</button>
+            </form>
+<script>
+    function goToEmployees()
+    {
+        
+    }
+function OpenupdateInventory(inventory_ID) {
+    findRow(inventory_ID);
+    document.getElementById("OpenupdateInventory").style.display = "block";
+}
+
+function CloseupdateInventory() {
+    document.getElementById("OpenupdateInventory").style.display = "none";
+}
+function findRow(inventory_ID){
+    
+    let table = document.getElementById("Inventory-table");
+
+    for (let i = 0, row; row = table.rows[i]; i++) {
+       //iterate through rows
+       //rows would be accessed using the "row" variable assigned in the for loop
+       if (table.rows[i].getAttribute("data-value") == inventory_ID) {
+            
+            // Get the location of the row where we found the matching person ID
+            let updateRowIndex = table.getElementsByTagName("tr")[i];
+            let temponsite = updateRowIndex.cells[1];
+            let tempfororder = updateRowIndex.cells[2];
+            //let tempmsrp = updateRowIndex.cells[3];
+            //let tempnumnber = updateRowIndex.cells[4];
+            //let tempemail = updateRowIndex.cells[5];
+
+            document.getElementById("inventory_ID").value = inventory_ID;
+            document.getElementById("input-onsite").value = temponsite.innerText;
+            document.getElementById("input-forOrder").value = tempfororder.innerText;
+            //document.getElementById("employee_Address").value = tempaddress.innerText;
+            //document.getElementById("employee_Phone").value = tempnumnber.innerText;
+            //document.getElementById("employee_Email").value = tempemail.innerText;
+       }
+    }
+}
+
+</script>         
+   
+
+<script src="/js/update_employee.js"></script>

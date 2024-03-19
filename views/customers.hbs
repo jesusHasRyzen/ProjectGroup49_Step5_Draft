@@ -1,74 +1,148 @@
+<!-- index.hbs -->
 
-<h1>Customers</h1>
-    <div id="Customers">
-        <button class="button newCustomer" onclick="NewCustomerForm()">New Customer</button>
-        <button class="button FindCustomer" onclick="NewFindCustomerForm()">Find Customer</button>
-        <!-- <div class="form-popup" id="NewCustomerForm"> -->
-            <form id="NewCustomerForm" class="form-container" style="display: none;">
-              <h1>New Customer</h1>
-          
-              <label for="customer_FirstName"><b>First Name</b></label>
-              <input type="text" placeholder="Enter First Name" name="customer_FirstName" required>
-          
-              <label for="customer_LastName"><b>Last Name</b></label>
-              <input type="text" placeholder="Enter Last Name" name="customer_LastName" required>
+<h1>Customers Tables!</h1>
 
-              <label for="customer_Address"><b>Address</b></label>
-              <input type="text" placeholder="Enter Address" name="customer_Address" required>
-          
-              <label for="customer_PhoneNumber"><b>Phone Number</b></label>
-              <input type="text" placeholder="Enter Phone Number" name="customer_PhoneNumber" required>
+{{!-- Create a table --}}
+<table id="Customer-table">
 
-              <label for="customer_EmailAddress"><b>Email</b></label>
-              <input type="text" placeholder="Enter Email" name="customer_EmailAddress" required>
-          
-              <button type="submit" class="btn">Enter New Customer</button>
-              <button type="button" class="btn cancel" onclick="CloseNewCustomerForm()">Cancel</button>
-            </form>
-            
-            <form id="EditCustomer" style="display: none;">
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+	    <th>delete</th>
+        <th>edit</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr data-value={{this.customer_ID}}>
+            <td>{{this.customer_ID}}</td>
+            <td>{{this.customer_FirstName}}</td>
+            <td>{{this.customer_LastName}}</td>
+            <td>{{this.customer_Address}}</td>
+            <td>{{this.customer_PhoneNumber}}</td>
+	    <td>{{this.customer_EmailAddress}}</td>
+	    <td><button onclick="deleteCustomer({{this.customer_ID}})">Delete</button></td>
+        <td><button onclick="OpenupdateCustomer({{this.customer_ID}})">Edit</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<script src="/js/delete_customer.js"></script>
+
+{{!-- <button onclick="routeCustomers()">Customers</button> --}}
+{{!-- <script src="/js/customers.js"></script> --}}
+
+
+
+<!-- /views/index.hbs -->
+<h2>Adding Data using an HTML form</h2>
+<p>To add a new person, please enter their information below nad click `Submit`!</p>
+<form id="add-person-form" method="POST" action="/add-person-form">
+    
+    <label for="input-id">Customer ID: </label>
+    <input type="number" name="input-id" id="input-id">
+
+    <label for="input-fname">First Name: </label>
+    <input type="text" name="input-fname" id="input-fname">
+    
+    <label for="input-lname">Last Name: </label>
+    <input type="text" name="input-lname" id="input-lname">
+
+    <label for="input-address">Address: </label>
+    <input type="text" name="input-address" id="input-address">
+
+    <label for="input-phone">Phone Number: </label>
+    <input type="number" name="input-phone" id="input-phone">
+
+    <label for="input-email">Email: </label>
+    <input type="text" name="input-email" id="input-email">
+
+    <input type="submit">
+</form>
+
+    <form id="OpenupdateCustomer" style="display: none;">
             <h3>Edit Customer</h3>
+                <label id="customer_id"><b>CustomerID</b></label>
+                <input id="customer_ID" readonly="readonly" />
                 <label for="customer_FirstName"><b>First Name</b></label>
-                <input type="text" placeholder="Enter First Name" name="customer_FirstName" required>
+                <input type="text" id="customer_FirstName">
             
                 <label for="customer_LastName"><b>Last Name</b></label>
-                <input type="text" placeholder="Enter Last Name" name="customer_LastName" required>
+                <input type="text" id="customer_LastName">
 
                 <label for="customer_Address"><b>Address</b></label>
-                <input type="text" placeholder="Enter Address" name="customer_Address" required>
+                <input type="text" id="customer_Address">
             
                 <label for="customer_PhoneNumber"><b>Phone Number</b></label>
-                <input type="text" placeholder="Enter Phone Number" name="customer_PhoneNumber" required>
+                <input type="text" id="customer_Phone">
 
                 <label for="customer_EmailAddress"><b>Email</b></label>
-                <input type="text" placeholder="Enter Email" name="customer_EmailAddress" required>
+                <input type="text" id="customer_Email">
             
                 <button type="submit" class="btn">Update Customer</button>
                 <button type="button" class="btn cancel" onclick="CloseupdateCustomer()">Cancel</button>
             </form>
-          <!-- </div> -->
-        <script>
-            function NewCustomerForm() {
-              document.getElementById("NewCustomerForm").style.display = "block";
-            }
-            
-            function CloseNewCustomerForm() {
-              document.getElementById("NewCustomerForm").style.display = "none";
-            }
 
-            function updateCustomer() {
-                document.getElementById("EditCustomer").style.display = "block";
-            }
-            
-            function CloseupdateCustomer() {
-                document.getElementById("EditCustomer").style.display = "none";
-            }
-            // function NewFindCustomerForm() {
-            //   document.getElementById("NewFindCustomerForm").style.display = "block";
-            // }
-            
-            // function CloseNewFindCustomerForm() {
-            //   document.getElementById("NewFindCustomerForm").style.display = "none";
-            // }
+<script>
+    function goToCustomers()
+    {
+        
+    }
+function OpenupdateCustomer(customerID) {
+    findRow(customerID);
+    document.getElementById("OpenupdateCustomer").style.display = "block";
+}
 
-        </script>
+function CloseupdateCustomer() {
+    document.getElementById("OpenupdateCustomer").style.display = "none";
+}
+function findRow(customerID){
+    
+    let table = document.getElementById("Customer-table");
+
+    for (let i = 0, row; row = table.rows[i]; i++) {
+       //iterate through rows
+       //rows would be accessed using the "row" variable assigned in the for loop
+       if (table.rows[i].getAttribute("data-value") == customerID) {
+            
+            // Get the location of the row where we found the matching person ID
+            let updateRowIndex = table.getElementsByTagName("tr")[i];
+            let tempfirstname = updateRowIndex.cells[1];
+            let templastname = updateRowIndex.cells[2];
+            let tempaddress = updateRowIndex.cells[3];
+            let tempnumnber = updateRowIndex.cells[4];
+            let tempemail = updateRowIndex.cells[5];
+
+            //console.log(updateRowIndex);
+            //console.log(tempfirstname);
+            //console.log(updateRowIndex.cells[2]);
+            //console.log(updateRowIndex.cells[3]);
+            //console.log(updateRowIndex.cells[4]);
+            //console.log(updateRowIndex.cells[5]);
+            document.getElementById("customer_ID").value = customerID;
+            document.getElementById("customer_FirstName").value = tempfirstname.innerText;
+            document.getElementById("customer_LastName").value = templastname.innerText;
+            document.getElementById("customer_Address").value = tempaddress.innerText;
+            document.getElementById("customer_Phone").value = tempnumnber.innerText;
+            document.getElementById("customer_Email").value = tempemail.innerText;
+       }
+    }
+}
+
+</script>         
+   
+
+<script src="/js/update_customer.js"></script>

@@ -29,12 +29,83 @@
             <td>{{this.employee_Address}}</td>
             <td>{{this.employee_PhoneNumber}}</td>
 	    <td>{{this.employee_EmailAddress}}</td>
-	    <td><button onclick="deleteCustomer({{this.customer_ID}})">Delete</button></td>
-        <td><button onclick="OpenupdateCustomer({{this.customer_ID}})">Edit</button></td>
+	    <td><button onclick="deleteEmployee({{this.employee_ID}})">Delete</button></td>
+        <td><button onclick="OpenupdateEmployee({{this.employee_ID}})">Edit</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+
+<script src="/js/delete_employee.js"></script>
+
+<form id="OpenupdateEmployee" style="display: none;">
+            <h3>Edit Employee</h3>
+                <label id="employee_id"><b>Employee ID</b></label>
+                <input id="employee_ID" readonly="readonly" />
+                <label for="employee_FirstName"><b>First Name</b></label>
+                <input type="text" id="employee_FirstName">
+            
+                <label for="employee_LastName"><b>Last Name</b></label>
+                <input type="text" id="employee_LastName">
+
+                <label for="employee_Address"><b>Address</b></label>
+                <input type="text" id="employee_Address">
+            
+                <label for="employee_PhoneNumber"><b>Phone Number</b></label>
+                <input type="text" id="employee_Phone">
+
+                <label for="employee_EmailAddress"><b>Email</b></label>
+                <input type="text" id="employee_Email">
+            
+                <button type="submit" class="btn">Update Employee</button>
+                <button type="button" class="btn cancel" onclick="CloseupdateEmployee()">Cancel</button>
+            </form>
+<script>
+    function goToEmployees()
+    {
+        
+    }
+function OpenupdateEmployee(employeeID) {
+    findRow(employeeID);
+    document.getElementById("OpenupdateEmployee").style.display = "block";
+}
+
+function CloseupdateEmployee() {
+    document.getElementById("OpenupdateEmployee").style.display = "none";
+}
+function findRow(employeeID){
+    
+    let table = document.getElementById("Employee-table");
+
+    for (let i = 0, row; row = table.rows[i]; i++) {
+       //iterate through rows
+       //rows would be accessed using the "row" variable assigned in the for loop
+       if (table.rows[i].getAttribute("data-value") == employeeID) {
+            
+            // Get the location of the row where we found the matching person ID
+            let updateRowIndex = table.getElementsByTagName("tr")[i];
+            let tempfirstname = updateRowIndex.cells[1];
+            let templastname = updateRowIndex.cells[2];
+            let tempaddress = updateRowIndex.cells[3];
+            let tempnumnber = updateRowIndex.cells[4];
+            let tempemail = updateRowIndex.cells[5];
+
+            document.getElementById("employee_ID").value = employeeID;
+            document.getElementById("employee_FirstName").value = tempfirstname.innerText;
+            document.getElementById("employee_LastName").value = templastname.innerText;
+            document.getElementById("employee_Address").value = tempaddress.innerText;
+            document.getElementById("employee_Phone").value = tempnumnber.innerText;
+            document.getElementById("employee_Email").value = tempemail.innerText;
+       }
+    }
+}
+
+</script>         
+   
+
+<script src="/js/update_employee.js"></script>
+
+
 
 <h2>Adding Data using an HTML form</h2>
 <p>To add a new person, please enter their information below nad click `Submit`!</p>

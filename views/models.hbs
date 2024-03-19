@@ -26,12 +26,15 @@
             <td>{{this.model_ID}}</td>
             <td>{{this.model_Name}}</td>
             <td>{{this.model_Year}}</td>
-	    <td><button onclick="deleteCustomer({{this.customer_ID}})">Delete</button></td>
-        <td><button onclick="OpenupdateCustomer({{this.customer_ID}})">Edit</button></td>
+	    <td><button onclick="deleteModel({{this.model_ID}})">Delete</button></td>
+        <td><button onclick="OpenupdateModel({{this.model_ID}})">Edit</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+
+<script src="/js/delete_model.js"></script>
+
 <form id="add-model-form" method="POST" action="/add-model-form">
     
     <label for="input-mid">Model ID: </label>
@@ -64,39 +67,57 @@
               <button type="button" class="btn cancel" onclick="CloseNewModelForm()">Cancel</button>
             </form>
 
-            <form id="EditModelForm" class="form-container" style="display: none;">
-                <h1>Edit Model</h1>
-            
-                <label for="model_ID"><b>Model ID</b></label>
-                <input type="text" placeholder="Enter Model ID" name="model_ID" required>
-            
+            <form id="OpenupdateModel" style="display: none;">
+            <h3>Edit Employee</h3>
+                <label id="model_id"><b>Model ID</b></label>
+                <input id="model_ID" readonly="readonly" />
                 <label for="model_Name"><b>Model Name</b></label>
-                <input type="text" placeholder="Enter Model Name" name="model_Name" required>
-  
-                <label for="model_Year"><b>Model Year</b></label>
-                <input type="text" placeholder="Enter Model Year" name="model_Year" required>
+                <input type="text" id="model_Name">
             
-                <button type="submit" class="btn">Update Model</button>
-                <button type="button" class="btn cancel" onclick="CloseupdateModelForm()">Cancel</button>
-              </form>
+                <label for="model_Year"><b>Model Year</b></label>
+                <input type="text" id="model_Year">
+            
+                <button type="submit" class="btn">Update Employee</button>
+                <button type="button" class="btn cancel" onclick="CloseupdateEmployee()">Cancel</button>
+            </form>
           <!-- </div> -->
         <script>
             function NewModelForm() {
               document.getElementById("NewModelForm").style.display = "block";
             }
             
-            function CloseNewModelForm() {
-              document.getElementById("NewModelForm").style.display = "none";
+            function CloseupdateEmployee() {
+              document.getElementById("OpenupdateModel").style.display = "none";
             }
 
-            function updateModel() {
-              document.getElementById("EditModelForm").style.display = "block";
+            function OpenupdateModel(model_ID) {
+              findRow(model_ID);
+              document.getElementById("OpenupdateModel").style.display = "block";
             }
             
             function CloseupdateModelForm() {
               document.getElementById("EditModelForm").style.display = "none";
             }
-            
+            function findRow(model_ID){
+                let table = document.getElementById("Model-table");
+
+                for (let i = 0, row; row = table.rows[i]; i++) {
+                  //iterate through rows
+                  //rows would be accessed using the "row" variable assigned in the for loop
+                  if (table.rows[i].getAttribute("data-value") == model_ID) {
+                        
+                        // Get the location of the row where we found the matching person ID
+                        let updateRowIndex = table.getElementsByTagName("tr")[i];
+                        let tempName = updateRowIndex.cells[1];
+                        let tempYear = updateRowIndex.cells[2];
+
+
+                        document.getElementById("model_ID").value = model_ID;
+                        document.getElementById("model_Name").value = tempName.innerText;
+                        document.getElementById("model_Year").value = tempYear.innerText;
+                  }
+                }
+            }
             // function NewFindCustomerForm() {
             //   document.getElementById("NewFindCustomerForm").style.display = "block";
             // }
@@ -104,5 +125,5 @@
             // function CloseNewFindCustomerForm() {
             //   document.getElementById("NewFindCustomerForm").style.display = "none";
             // }
-
         </script>
+        <script src="/js/update_model.js"></script>

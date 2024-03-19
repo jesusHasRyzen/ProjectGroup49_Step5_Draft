@@ -24,18 +24,20 @@
         {{#each data}}
         <tr data-value={{this.invoice_ID}}>
             <td>{{this.invoice_ID}}</td>
-            <td>{{this.customer_ID}}</td>
             <td>{{this.employee_ID}}</td>
             <td>{{this.quantity}}</td>
-            <td>{{this.model_ID}}</td>
-	          <td>{{this.trim_ID}}</td>
+            <td>{{this.trim_ID}}</td>
             <td>{{this.total_Price}}</td>
-	    <td><button onclick="deleteCustomer({{this.customer_ID}})">Delete</button></td>
-        <td><button onclick="OpenupdateCustomer({{this.customer_ID}})">Edit</button></td>
+            <td>{{this.customer_ID}}</td>
+            <td>{{this.model_ID}}</td>
+	    <td><button onclick="deleteInvoice({{this.invoice_ID}})">Delete</button></td>
+        <td><button onclick="OpenupdateInvoice({{this.invoice_ID}})">Edit</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+<script src="/js/delete_invoice.js"></script>
+
 <h2>Adding Data using an HTML form</h2>
 <p>To add a new person, please enter their information below nad click `Submit`!</p>
 <form id="add-invoice-form" method="POST" action="/add-invoice-form">
@@ -44,19 +46,19 @@
     <input type="number" name="input-iid" id="input-iid">
 
     <label for="input-cid">Customer ID: </label>
-    <input type="text" name="input-cid" id="input-cid">
+    <input type="number" name="input-cid" id="input-cid">
     
     <label for="input-eid">Employee ID: </label>
-    <input type="text" name="input-eid" id="input-eid">
+    <input type="number" name="input-eid" id="input-eid">
 
     <label for="input-quantity">Quantity: </label>
-    <input type="text" name="input-quantity" id="input-quantity">
+    <input type="number" name="input-quantity" id="input-quantity">
 
     <label for="input-mid">Model ID: </label>
     <input type="number" name="input-mid" id="input-mid">
 
     <label for="input-tid">Trim ID: </label>
-    <input type="text" name="input-tid" id="input-tid">
+    <input type="number" name="input-tid" id="input-tid">
 
     <label for="input-price">Total Price: </label>
     <input type="text" name="input-price" id="input-price">
@@ -91,21 +93,69 @@
               <button type="button" class="btn cancel" onclick="CloseNewInvoiceForm()">Cancel</button>
             </form>
           <!-- </div> -->
-        <script>
-            function NewInvoiceForm() {
-              document.getElementById("NewInvoiceForm").style.display = "block";
-            }
-            
-            function CloseNewInvoiceForm() {
-              document.getElementById("NewInvoiceForm").style.display = "none";
-            }
-            
-            // function NewFindCustomerForm() {
-            //   document.getElementById("NewFindCustomerForm").style.display = "block";
-            // }
-            
-            // function CloseNewFindCustomerForm() {
-            //   document.getElementById("NewFindCustomerForm").style.display = "none";
-            // }
+           <form id="OpenupdateInvoice" style="display: none;">
+            <h3>Edit Trim</h3>
+                <label id="invoice_id"><b>Invoice ID</b></label>
+                <input id="in_iid" readonly="readonly"/>
 
-        </script>
+                <label for="input_cid"><b>Customer ID</b></label>
+                <input type="text" id="in_cid">
+            
+                <label for="input_eid"><b>Employee ID</b></label>
+                <input type="text" id="in_eid">
+
+                <label for="input_quantity"><b>Quantity</b></label>
+                <input type="text" id="input_quantity">
+            
+                <label for="input-model"><b>Model ID</b></label>
+                <input type="text" id="in_model">
+
+                <label for="input-trim"><b>Trim ID</b></label>
+                <input type="text" id="in_trim">
+
+                <label for="input-price"><b>total Price</b></label>
+                <input type="text" id="in_price">
+            
+                <button type="submit" class="btn">Update Invoice</button>
+                <button type="button" class="btn cancel" onclick="CloseupdateEmployee()">Cancel</button>
+            </form>
+      <script>
+function OpenupdateInvoice(trimID) {
+    findRow(trimID);
+    document.getElementById("OpenupdateInvoice").style.display = "block";
+}
+
+function CloseupdateEmployee() {
+    document.getElementById("OpenupdateInvoice").style.display = "none";
+}
+function findRow(invoiceID){
+    
+    let table = document.getElementById("Invoices-table");
+
+    for (let i = 0, row; row = table.rows[i]; i++) {
+       //iterate through rows
+       //rows would be accessed using the "row" variable assigned in the for loop
+       if (table.rows[i].getAttribute("data-value") == invoiceID) {
+            
+            // Get the location of the row where we found the matching person ID
+            let updateRowIndex = table.getElementsByTagName("tr")[i];
+            let tempname = updateRowIndex.cells[1];
+            let tempunits = updateRowIndex.cells[2];
+            let tempmsrp = updateRowIndex.cells[3];
+            let tempmodel = updateRowIndex.cells[4];
+            let tempiid = updateRowIndex.cells[5];
+            let tempmid = updateRowIndex.cells[6];
+
+            document.getElementById("in_iid").value = invoiceID;
+            document.getElementById("in_eid").value = tempname.innerText;
+            document.getElementById("input_quantity").value = tempunits.innerText;
+            document.getElementById("in_trim").value = tempmsrp.innerText;
+            document.getElementById("in_price").value = tempmodel.innerText;
+            document.getElementById("in_cid").value = tempiid.innerText;
+            document.getElementById("in_model").value = tempmid.innerText;
+       }
+    }
+}
+
+</script>  
+<script src="/js/update_invoice.js"></script>
