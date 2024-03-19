@@ -45,7 +45,7 @@ CREATE OR REPLACE Table Inventory (
 -- has relationships to Customers and Emmployees tables to get each's ID from parent tables
 CREATE OR REPLACE TABLE Invoices (
   invoice_ID INT AUTO_INCREMENT,
-  employee_ID INT NOT NULL,
+  employee_ID INT, -- Now it should be nullable and this is the attribute that makes the most sense to be nullable
   quantity INT NOT NULL,
   trim_ID INT NOT NULL,
   total_Price DECIMAL(10) NOT NULL,
