@@ -76,10 +76,10 @@ CREATE OR REPLACE TABLE Trims (
   trim_Name VARCHAR(45) NOT NULL,
   trim_Units INT NOT NULL,
   trim_MSRP INT NOT NULL,
-  models_Models INT NOT NULL,
+  model_ID INT NOT NULL,
   inventory_ID INT NOT NULL,
   PRIMARY KEY (trim_ID, inventory_ID),
-  FOREIGN KEY(models_Models) REFERENCES Models(model_ID)
+  FOREIGN KEY(model_ID) REFERENCES Models(model_ID)
   ON DELETE CASCADE,
   FOREIGN KEY(inventory_ID) references Inventory(inventory_ID)
   ON DELETE CASCADE
